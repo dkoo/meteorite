@@ -1,0 +1,12 @@
+.preview {
+	img {
+		display: block;
+		max-width: 100%;
+	}
+	p {
+		margin-top: 1em;
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+}

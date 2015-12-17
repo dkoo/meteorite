@@ -1,0 +1,17 @@
+<head>
+	<title>Meteorite</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<main ng-app="meteorite" ng-controller="meteorite_default">
+		<header id="topbar" ng-include="'client/app/components/menu/menu.html'"></header>
+
+		<header class="meta">
+			<h1>{{article.title}}</h1>
+		</header>
+
+		<div class="editor">
+		</div><div class="preview" ng-bind-html="marked(article.body)"></div>
+	</main>
+</body>
