@@ -1,9 +1,10 @@
 #topbar {
 	background-color: white;
-	box-shadow: 0 1px 0 rgba(0,0,0,0.15),0 0 1px 0 rgba(0,0,0,0.15);
+	// box-shadow: 0 1px 0 rgba(0,0,0,0.15),0 0 1px 0 rgba(0,0,0,0.15);
+	border-bottom: 1px solid #ddd;
 	box-sizing: border-box;
 	line-height: 48px;
-	padding: 0 30px;
+	padding: 0 1em;
 	position: fixed;
 	top: 0;
 	width: 100%;
