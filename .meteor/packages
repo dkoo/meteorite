@@ -10,19 +10,14 @@ mongo                   # The database Meteor supports right now
 session                 # Client-side reactive dictionary for your app
 tracker                 # Meteor's client-side reactive programming library
 
-es5-shim                # ECMAScript 5 compatibility for older browsers.
 
 autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
-jquery
 fourseven:scss
 seba:minifiers-autoprefixer
-angular
-sanjo:jasmine
-velocity:html-reporter
-angular:angular-mocks
-angularui:angular-ui-router
-angular:angular-animate
 perak:codemirror
 chuangbo:marked
 angularjs:angular-sanitize
+es5-shim
+ecmascript
+blaze-html-templates

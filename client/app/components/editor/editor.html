@@ -1,0 +1,13 @@
+<template name="editor">
+	{{#with article}}
+		<header class="meta">
+			<h1>{{title}}</h1>
+		</header>
+
+		<div class="editor">
+			{{> CodeMirror id="editor" name="editor" options=editorOptions code=editorCode}}
+		</div><div class="preview">
+			{{{parsed}}}
+		</div>
+	{{/with}}
+</template>
