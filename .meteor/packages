@@ -21,3 +21,5 @@ angularjs:angular-sanitize
 es5-shim
 ecmascript
 blaze-html-templates
+sanjo:jasmine
+velocity:html-reporter

@@ -3,7 +3,7 @@ Template.editor.helpers({
 		return Articles.findOne({title: 'test article'});
 	},
 	title: function() {
-		return this.title;
+		return this.title || 'Your title here';
 	},
 	editorOptions: function() {
 		return {
@@ -13,10 +13,10 @@ Template.editor.helpers({
 		};
 	},
 	editorCode: function() {
-		return this.body;
+		return this.body || 'Your Markdown text here';
 	},
 	parsed: function() {
-		return marked(this.body);
+		return marked(this.body) || marked('Your Markdown text here');
 	}
 });
 
