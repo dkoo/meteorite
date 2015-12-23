@@ -1,0 +1,16 @@
+<template name="storyList">
+	<div class="stories">
+		<h1>Stories</h1>
+
+		<ul>
+			<li><a class="new" href="/editor/new" title="Start a new story">New story</a></li>
+			{{#if stories}}
+				{{#each stories}}
+					<li>{{title}}</li>
+				{{/each}}
+			{{else}}
+				<p>No stories!</p>
+			{{/if}}
+		</ul>
+	</div>
+</template>

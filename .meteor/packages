@@ -11,8 +11,6 @@ session                 # Client-side reactive dictionary for your app
 tracker                 # Meteor's client-side reactive programming library
 
 
-autopublish             # Publish all data to the clients (for prototyping)
-insecure                # Allow all DB writes from clients (for prototyping)
 fourseven:scss
 seba:minifiers-autoprefixer
 perak:codemirror
@@ -23,3 +21,6 @@ ecmascript
 blaze-html-templates
 sanjo:jasmine
 velocity:html-reporter
+check
+kadira:flow-router
+kadira:blaze-layout

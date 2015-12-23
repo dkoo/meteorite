@@ -1,6 +1,7 @@
 Template.editor.helpers({
-	article: function() {
-		return Articles.findOne({title: 'test article'});
+	story: function() {
+		Meteor.subscribe('stories');
+		return Stories.findOne({title: 'test article'});
 	},
 	title: function() {
 		return this.title || 'Your title here';
@@ -13,10 +14,10 @@ Template.editor.helpers({
 		};
 	},
 	editorCode: function() {
-		return this.body || 'Your Markdown text here';
+		return this.body || '';
 	},
 	parsed: function() {
-		return marked(this.body) || marked('Your Markdown text here');
+		return marked(this.body) || marked('');
 	}
 });
 
