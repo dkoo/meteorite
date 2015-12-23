@@ -17,13 +17,16 @@ Meteor.methods({
 			throw new Meteor.Error(500, 'Not authorized.');
 		}
 	},
-	updateBody: function(id, text) {
-		check(text, String);
+	update: function(id, field, input) {
+		check(field, String);
+		check(input, String);
+
+		var update = {};
+
+		update[field] = input;
 
 		return Stories.update(id, {
-			$set: {
-				body: text
-			}
+			$set: update
 		});
 	}
 });

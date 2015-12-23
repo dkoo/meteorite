@@ -19,7 +19,6 @@ Template.storyList.events({
 			if ( err ) {
 				console.log(err);
 			}
-			console.log(response);
 			FlowRouter.go('/editor/' + response);
 		});
 	}

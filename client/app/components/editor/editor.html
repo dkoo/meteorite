@@ -1,13 +1,16 @@
 <template name="editor">
 	{{#with story}}
-		<header class="meta">
-			<h1>{{title}}</h1>
-		</header>
-
 		<div class="editor">
+			<header class="meta">
+				{{{show "title"}}}
+			</header>
+
 			{{> CodeMirror id="editor" name="editor" options=editorOptions code=editorCode}}
 		</div><div class="preview">
-			{{{parsed}}}
+			<header class="meta">
+				<h1>{{title}}</h1>
+			</header>
+			{{{parse "body"}}}
 		</div>
 	{{/with}}
 </template>

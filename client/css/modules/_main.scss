@@ -8,7 +8,7 @@ body {
 }
 
 main {
-	padding-top: 60px;
+	margin-top: 60px;
 	h1,
 	h2,
 	h3,
@@ -17,9 +17,6 @@ main {
 	h6 {
 		font-family: $sans;
 		font-weight: 400;
-	}
-	header.meta {
-		padding: 0 1em;
 	}
 	div {
 		a {
@@ -33,10 +30,13 @@ main {
 	.preview{
 		box-sizing: border-box;
 		padding: 1em;
-	},
+		h1 {
+			font-size: 32px;
+			line-height: 36px;
+		}
+	}
 	.stories {
 		box-sizing: border-box;
-		margin-top: 1em;
 		padding: 1em;
 	}
 }
