@@ -2,6 +2,8 @@
 	<main>
 		{{> menu}}
 
-		{{> Template.dynamic template=content}}
+		{{#if loggedIn}}
+			{{> Template.dynamic template=content}}
+		{{/if}}
 	</main>
 </template>

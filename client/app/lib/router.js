@@ -9,7 +9,7 @@ var editor = FlowRouter.group({
 	name: 'editor'
 });
 
-editor.route('/new', {
+editor.route('/:id', {
 	action: function() {
         BlazeLayout.render('stories', {content: 'editor'});
 	}

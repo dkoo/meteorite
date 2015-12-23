@@ -1,3 +1,16 @@
+Template.storyList.helpers({
+	stories: function() {
+		var filter = {},
+			results;
+
+		Meteor.subscribe('stories', {});
+
+		results = Stories.find( filter, { sort: { createdAt: -1 } } );
+
+		return results.count() ? results : false;
+	}
+});
+
 Template.storyList.events({
 	'click a.new': function(e) {
 		e.preventDefault();
@@ -7,7 +20,7 @@ Template.storyList.events({
 				console.log(err);
 			}
 			console.log(response);
-			// FlowRouter.go('/' + response);
+			FlowRouter.go('/editor/' + response);
 		});
 	}
 });

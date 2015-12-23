@@ -12,15 +12,15 @@ Meteor.methods({
 				status: 'draft'
 			};
 
-			return Stories.insert(update)
+			return Stories.insert(update);
 		} else {
 			throw new Meteor.Error(500, 'Not authorized.');
 		}
 	},
-	udpateBody: function(id, text) {
+	updateBody: function(id, text) {
 		check(text, String);
 
-		return Articles.update(id, {
+		return Stories.update(id, {
 			$set: {
 				body: text
 			}

@@ -6,7 +6,7 @@
 			<li><a class="new" href="/editor/new" title="Start a new story">New story</a></li>
 			{{#if stories}}
 				{{#each stories}}
-					<li>{{title}}</li>
+					<li><a href="/editor/{{_id}}">{{title}}</a></li>
 				{{/each}}
 			{{else}}
 				<p>No stories!</p>

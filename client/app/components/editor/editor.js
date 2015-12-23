@@ -1,7 +1,8 @@
 Template.editor.helpers({
 	story: function() {
-		Meteor.subscribe('stories');
-		return Stories.findOne({title: 'test article'});
+		var storyId = FlowRouter.getParam('id');
+		Meteor.subscribe('stories', {_id: storyId});
+		return Stories.findOne({_id: storyId});
 	},
 	title: function() {
 		return this.title || 'Your title here';
@@ -25,11 +26,6 @@ Template.editor.events({
 	'keyup .CodeMirror': function(e, template) {
 		var text = document.getElementById('editor').value;
 
-		Articles.update(this._id, {
-			$set: {
-				body: text
-			}
-		});
-		// Meteor.call('updateBody', this._id, text);
+		Meteor.call('updateBody', this._id, text);
 	}
 });
