@@ -1,0 +1,13 @@
+<template name="editStory">
+	<header class="meta">
+		<h1 contentEditable="true" class="title" data-placeholder="Story title"></h1>
+		<h2 contentEditable="true" class="author" data-placeholder="Author name(s)"></h2>
+		<h3 contentEditable="true" class="dek" data-placeholder="A short summary or excerpt"></h3>
+	</header>
+	<div class="editor">
+		<!-- <textarea id="body"></textarea> -->
+		{{> CodeMirror id="editor" name="editor" options=editorOptions code=editorCode}}
+	</div><div class="preview">
+		{{{parse "body"}}}
+	</div>
+</template>
