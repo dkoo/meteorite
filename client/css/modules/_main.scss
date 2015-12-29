@@ -17,6 +17,8 @@ main {
 	h6 {
 		font-family: $sans;
 		font-weight: 400;
+		margin: 0;
+		padding: 0;
 	}
 	div {
 		a {
@@ -26,14 +28,29 @@ main {
 			}
 		}
 	}
+	.meta,
 	.editor,
-	.preview{
+	.preview {
 		box-sizing: border-box;
-		padding: 1em;
-		h1 {
-			font-size: 32px;
-			line-height: 36px;
+		padding: 1rem;
+		&::before {
+			color: #aaa;
+			display: block;
+			font-family: $sans;
+			font-size: 10px;
+			letter-spacing: 0.1em;
+			margin-bottom: 1rem;
+			text-transform: uppercase;
 		}
+	}
+	.meta::before {
+		content: 'Meta';
+	}
+	.editor::before {
+		content: 'Markdown';
+	}
+	.preview::before {
+		content: 'Preview';
 	}
 	.stories {
 		box-sizing: border-box;

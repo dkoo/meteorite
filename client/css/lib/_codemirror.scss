@@ -1,0 +1,13 @@
+.CodeMirror {
+	font-family: $monospace;
+	font-size: 14px;
+	height: auto;
+	line-height: 24px;
+	&:empty {
+		&::after {
+			color: #ccc;
+			content: 'Your markdown here';
+			font-style: italic;
+		}
+	}
+}
