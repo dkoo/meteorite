@@ -52,8 +52,6 @@ Template.editStory.events({
 		Meteor.utils.sessionToggle(section + 'Expanded');
 
 		parent.parentNode.classList.toggle(section);
-
-		console.log(parent.classList);
 	},
 	'paste .meta *[contentEditable=true]': function(e) {
 		e.preventDefault();

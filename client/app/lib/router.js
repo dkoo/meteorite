@@ -1,5 +1,6 @@
 FlowRouter.route('/', {
     action: function() {
+		Session.set('viewing', 'stories');
         BlazeLayout.render('stories', {content: 'storyList'});
     }
 });
@@ -11,6 +12,7 @@ var editor = FlowRouter.group({
 
 editor.route('/:id', {
 	action: function() {
-        BlazeLayout.render('stories', {content: 'editor'});
+		Session.set('viewing', 'story');
+		BlazeLayout.render('stories', {content: 'editor'});
 	}
 });

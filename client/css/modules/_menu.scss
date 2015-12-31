@@ -5,7 +5,7 @@
 	box-sizing: border-box;
 	left: 0;
 	line-height: 48px;
-	padding: 0 1em;
+	padding: 0 18px;
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -18,26 +18,60 @@
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
 	}
-	ul {
+	> ul {
 		float: right;
 		margin: 0;
 		padding: 0;
-		li {
+		> li {
 			display: inline-block;
 			font-family: $sans;
 			font-size: 10px;
 			font-weight: 500;
+			position: relative;
 			@include smallcaps();
-			& + li {
-				margin-left: 1.5em;
-			}
-			a {
+			> a {
 				display: block;
+				padding: 0 18px;
+				transition: none;
+				&:hover {
+					color: inherit;
+				}
 				i {
-					margin-right: 0.5em;
+					margin-left: 10px;
 				}
 				span {
 					display: inline;
+				}
+			}
+			ul {
+				background-color: #aaa;
+				display: none;
+				color: white;
+				margin: 0;
+				padding: 0;
+				position: absolute;
+				right: 0;
+				white-space: nowrap;
+				width: auto;
+				li {
+					display: block;
+					margin: 0;
+					padding: 0 18px;
+					a {
+						display: block;
+						&:hover {
+							color: #ddd;
+						}
+					}
+				}
+			}
+			&.open {
+				background-color: #aaa;
+				a {
+					color: white;
+				}
+				ul {
+					display: block;
 				}
 			}
 		}

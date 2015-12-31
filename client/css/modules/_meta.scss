@@ -21,12 +21,12 @@ header.meta {
 		}
 		&:hover,
 		&:focus {
-			background-color: ghostwhite;
-			border-color: #95D9C3;
+			// background-color: ghostwhite;
+			// border-color: #95D9C3;
 		}
 		&:focus {
-			border-bottom-style: solid;
-			border-top-style: solid;
+			// border-bottom-style: solid;
+			// border-top-style: solid;
 			&::before {
 				content: '';
 			}
