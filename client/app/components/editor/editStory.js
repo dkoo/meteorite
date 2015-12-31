@@ -6,12 +6,12 @@ timer = undefined;
 Template.editStory.onRendered(function() {
 	// cache the CodeMirror textarea & preview element
 	body = this.find('#editor');
-	preview = this.find('.preview');
+	preview = this.find('.preview article');
 
 	preview.innerHTML = marked(body.value);
 
 	var self = this,
-		fields = self.findAll('.meta *'),
+		fields = self.findAll('.meta *[contentEditable=true]'),
 		field;
 
 	for ( var i = 0; i !== fields.length; i++ ) {
@@ -36,11 +36,33 @@ Template.editStory.helpers ({
 		console.log(body);
 
 		return marked(body.value) || '';
+	},
+	expanded: function(section) {
+		return Session.get(section + 'Expanded');
 	}
 });
 
 Template.editStory.events({
-	'blur .meta *': function(e, template) {
+	'click .expand': function(e) {
+		e.preventDefault();
+
+		var parent = e.currentTarget.parentNode,
+			section = parent.classList[0];
+
+		Meteor.utils.sessionToggle(section + 'Expanded');
+
+		parent.parentNode.classList.toggle(section);
+
+		console.log(parent.classList);
+	},
+	'paste .meta *[contentEditable=true]': function(e) {
+		e.preventDefault();
+
+		// allow pasting of plain text only
+		var text = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+		document.execCommand('insertText', false, text);
+	},
+	'blur .meta *[contentEditable=true]': function(e) {
 		var field = e.currentTarget.className,
 			input = e.currentTarget.textContent;
 
@@ -48,7 +70,14 @@ Template.editStory.events({
 			Meteor.call('update', this._id, field, input);
 		}
 	},
-	'keyup .CodeMirror': function(e) {
+	'keydown .meta *[contentEditable=true]': function(e) {
+		// when the user hits enter, blur field to save input
+		if ( e.keyCode === 13 ) {
+			e.preventDefault();
+			e.currentTarget.blur();
+		}
+	},
+	'input .CodeMirror, keyup .CodeMirror, paste .CodeMirror': function(e) {
 		preview.innerHTML = marked(body.value);
 		var self = this;
 
@@ -62,26 +91,5 @@ Template.editStory.events({
 				Meteor.call('update', self._id, 'body', body.value);
 			}
 		}, 1000);
-	},
-	'input #editor': function(e) {
-		console.log(e.target.value);
 	}
-	// 'keyup .editor .field, keyup .CodeMirror': function(e, template) {
-	// 	var field = e.currentTarget.classList.contains('CodeMirror') ? 'body' : e.currentTarget.id,
-	// 		input;
-
-	// 	if ( field === 'body' ) {
-	// 		console.log(body);
-	// 		if ( !body ) {
-	// 			body = document.getElementById('editor');
-	// 		}
-	// 		input = body.value;
-	// 	} else {
-	// 		input = e.target.textContent;
-	// 	}
-
-	// 	if ( input !== this[field] ) {
-	// 		Meteor.call('update', this._id, field, input);
-	// 	}
-	// }
 });

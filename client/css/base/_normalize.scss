@@ -90,7 +90,7 @@ a {
   background-color: transparent;
   color: inherit;
   text-decoration: none;
-  transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+  transition: color $transition, border-color $transition, background-color $transition;
   &:hover {
     color: #aaa;
   }
