@@ -6,9 +6,8 @@ Meteor.methods({
 			var update = {
 				owner: this.userId,
 				createdAt: new Date(),
-				title: 'New Story',
-				summary: 'A short summary or excerpt',
-				body: 'Story content goes *here*',
+				title: 'Untitled story',
+				body: 'Story content goes here. Try typing some **Markdown**!',
 				status: 'draft'
 			};
 

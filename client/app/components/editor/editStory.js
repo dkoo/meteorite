@@ -1,14 +1,24 @@
 // global vars
 body = undefined;
+cm = undefined;
 preview = undefined;
 timer = undefined;
 
 Template.editStory.onRendered(function() {
 	// cache the CodeMirror textarea & preview element
+	// body = this.find('#editor');
 	body = this.find('#editor');
+
+	cm = CodeMirror.fromTextArea(body, {
+		fixedGutter: false,
+		lineNumbers: false,
+		lineWrapping: true,
+		mode: 'markdown'
+	})
+
 	preview = this.find('.preview article');
 
-	preview.innerHTML = marked(body.value);
+	preview.innerHTML = marked(cm.getValue());
 
 	var self = this,
 		fields = self.findAll('.meta *[contentEditable=true]'),
@@ -19,22 +29,19 @@ Template.editStory.onRendered(function() {
 
 		field.textContent = self.data[field.className];
 	}
+
+	// bugfix for CodeMirror cursor positioning bug
+	var main = document.querySelector('main'),
+		refresh = function() {
+			cm.refresh();
+			main.removeEventListener('scroll', refresh);
+		};
+
+	main.addEventListener('scroll', refresh);
 });
 
 Template.editStory.helpers ({
-	editorOptions: function() {
-		return {
-			lineNumbers: false,
-			lineWrapping: true,
-			mode: 'markdown'
-		};
-	},
-	editorCode: function() {
-		return this.body || '';
-	},
 	parse: function(field) {
-		console.log(body);
-
 		return marked(body.value) || '';
 	},
 	expanded: function(section) {
@@ -75,9 +82,11 @@ Template.editStory.events({
 			e.currentTarget.blur();
 		}
 	},
-	'input .CodeMirror, keyup .CodeMirror, paste .CodeMirror': function(e) {
-		preview.innerHTML = marked(body.value);
-		var self = this;
+	'input .CodeMirror, keyup .CodeMirror, paste .CodeMirror': function(e, t) {
+		var self = this,
+			input = cm.getValue();
+
+		preview.innerHTML = marked(input);
 
 		if ( !!timer ) {
 			clearTimeout(timer);
@@ -85,9 +94,13 @@ Template.editStory.events({
 
 		// call update method only once user has stopped typing for 1 second
 		timer = setTimeout(function() {
-			if ( body.value !== self.body ) {
-				Meteor.call('update', self._id, 'body', body.value);
+			if ( input !== self.body ) {
+				Meteor.call('update', self._id, 'body', input);
 			}
 		}, 1000);
+	},
+	'transitionend .editor': function(e) {
+		// refresh CodeMirror editor when resized
+		cm.refresh();
 	}
 });

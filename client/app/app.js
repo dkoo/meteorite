@@ -6,4 +6,8 @@ Meteor.startup(function() {
 		sanitize: true,
 		smartypants: true
 	});
+
+	// scroll sync by default
+	Session.set('sync', true);
+	Session.set('font', false);
 });

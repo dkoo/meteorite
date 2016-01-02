@@ -1,10 +1,12 @@
 div.preview {
+	font-size: 1em;
+	line-height: 1.5em;
 	h1,
 	h2,
 	h3,
 	h4,
 	h5 {
-		margin-top: 32px;
+		margin-top: 1em;
 		&:first-child {
 			margin-top: 0;
 		}
@@ -14,16 +16,16 @@ div.preview {
 		max-width: 100%;
 	}
 	p {
-		margin-top: 24px;
+		margin-top: 1.25em;
 		&:first-child {
 			margin-top: 0;
 		}
 	}
 	code {
 		font-family: $monospace;
-		font-size: 14px;
+		font-size: 0.75em;
 		height: auto;
-		line-height: 24px;
+		line-height: 1.75em;
 	}
 	pre {
 		background-color: ghostwhite;
