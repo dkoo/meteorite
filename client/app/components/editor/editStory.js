@@ -1,15 +1,10 @@
 // global vars
-body = undefined;
 cm = undefined;
 preview = undefined;
 timer = undefined;
 
 Template.editStory.onRendered(function() {
-	// cache the CodeMirror textarea & preview element
-	// body = this.find('#editor');
-	body = this.find('#editor');
-
-	cm = CodeMirror.fromTextArea(body, {
+	cm = CodeMirror.fromTextArea(this.find('#editor'), {
 		fixedGutter: false,
 		lineNumbers: false,
 		lineWrapping: true,
@@ -41,9 +36,6 @@ Template.editStory.onRendered(function() {
 });
 
 Template.editStory.helpers ({
-	parse: function(field) {
-		return marked(body.value) || '';
-	},
 	expanded: function(section) {
 		return Session.get(section + 'Expanded');
 	}
