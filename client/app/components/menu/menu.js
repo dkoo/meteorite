@@ -1,6 +1,9 @@
 Template.menu.helpers({
 	viewing: function(what) {
 		return Session.get('viewing') === what;
+	},
+	hideMenu: function() {
+		return Session.get('hideMenu');
 	}
 });
 

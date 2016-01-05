@@ -8,8 +8,12 @@
 	padding: 0 18px;
 	position: fixed;
 	top: 0;
+	transition: transform $transition;
 	width: 100%;
 	z-index: 3;
+	&.hide {
+		transform: translateY(-100%);
+	}
 	#logo {
 		display: inline-block;
 		font-family: $sans;

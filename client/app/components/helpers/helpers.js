@@ -12,6 +12,32 @@ Meteor.utils = {
 			Session.set(key, true);
 		}
 	},
+	debounce: function(fn, delay, immediate) {
+		var timeout;
+		return function() {
+			var context = this, args = arguments;
+			var later = function() {
+				timeout = null;
+				if (!immediate) fn.apply(context, args);
+			};
+			var callNow = immediate && !timeout;
+			clearTimeout(timeout);
+			timeout = setTimeout(later, delay);
+			if (callNow) fn.apply(context, args);
+		};
+	},
+	throttle: function(fn, delay) {
+		var wait = false;
+		return function () {
+			if ( !wait ) {
+				fn.call();
+				wait = true;
+				setTimeout(function () {
+					wait = false;
+				}, delay);
+			}
+		}
+	},
 	makeSlug: function(str) {
 		var arr = str.split(' '),
 			slug = [],

@@ -1,6 +1,7 @@
 FlowRouter.route('/', {
     action: function() {
 		Session.set('viewing', 'stories');
+		Session.set('hideMenu', false);
         BlazeLayout.render('stories', {content: 'storyList'});
     }
 });
