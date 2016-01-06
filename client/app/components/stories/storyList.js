@@ -1,3 +1,7 @@
+Template.storyList.onRendered(function() {
+	document.title = 'Meteorite';
+});
+
 Template.storyList.helpers({
 	stories: function() {
 		var filter = {},

@@ -1,0 +1,13 @@
+<template name="modal">
+	{{#with data}}
+		<aside class="modal">
+			<div>
+				<h1>{{title}}</h1>
+
+				{{{parse message}}}
+
+				{{{showButtons}}}
+			</div>
+		</aside>
+	{{/with}}
+</template>

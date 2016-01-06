@@ -1,14 +1,20 @@
 <template name="menu">
+	{{#if showModal}}
+		{{> modal}}
+	{{/if}}
+
 	<header id="topbar" class="{{#if hideMenu}}hide{{/if}}">
 		<a href="/" id="logo">Meteorite</a>
 
 		<ul>
 			{{#if viewing "story"}}
 				<li>
-					<a href="#"><span>Export</span><i class="fa fa-cloud-download"></i></a>
-					<ul class="export">
-						<li><a href="#" class="md">Markdown</a></li>
-						<li><a href="#" class="html">HTML</a></li>
+					<a href="#"><span>Actions</span><i class="fa fa-pencil-square-o"></i></a>
+					<ul class="actions">
+						<li><a href="#" class="export md">Export as Markdown</a></li>
+						<li><a href="#" class="export html">Export as HTML</a></li>
+						<li><a href="#" class="route">Route story</a></li>
+						<li><a href="#" class="delete">Delete story</a></li>
 					</ul>
 				</li>
 			{{/if}}

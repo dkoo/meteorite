@@ -9,32 +9,35 @@ Template.stories.events({
 				links[i].classList.remove('open');
 			}
 		}
-
-		Session.set('hideMenu', false);
 	},
 	'scroll main': function(e) {
 		var scrolled = e.target.scrollTop,
 			timer = Date.now();
 		if ( Session.get('viewing', 'story') ) {
-			var oldScroll = Session.get('scrolled') || {
+			var old = Session.get('scrolled') || {
 				scrolled: 0,
 				timer: 0
 			};
 
-			if ( timer > oldScroll.timer + 250 ) {
-
-				if ( scrolled > oldScroll.scrolled ) {
-					if ( scrolled > 100 ) {
+			if ( timer > old.timer + 250 ) {
+				if ( scrolled > old.scrolled && scrolled > 100 ) {
+					if ( !Session.get('hideMenu') ) {
 						Session.set('hideMenu', true);
 					}
 				} else {
-					Session.set('hideMenu', false);
+					if ( Session.get('hideMenu') ) {
+						Session.set('hideMenu', false);
+					}
 				}
 
 				Session.set('scrolled', {
 					scrolled: scrolled,
 					timer: timer
 				});
+			} else {
+				if ( scrolled < 101 && Session.get('hideMenu') ) {
+					Session.set('hideMenu', false);
+				}
 			}
 		}
 	}

@@ -4,6 +4,13 @@ Template.menu.helpers({
 	},
 	hideMenu: function() {
 		return Session.get('hideMenu');
+	},
+	showModal: function() {
+		if ( !!Session.get('modal') ) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 });
 
@@ -20,23 +27,35 @@ Template.menu.events({
 
 		e.currentTarget.parentNode.classList.toggle('open');
 	},
-	'click .export a': function(e) {
+	'click a.export': function(e) {
 		e.preventDefault();
 		var editor = document.querySelector('.editor'),
 			filetype = e.currentTarget.className,
 			format = filetype === 'md' ? 'plain' : 'html',
 			data = Blaze.getData(editor),
-			content = filetype === 'md' ? data.body : '<!DOCTYPE html>\n<html>\n<head>\n\t<title>' + data.title + '</title>\n\t<meta name="author" content="' + data.author + '">\n\t<meta name="description" content="' + data.dek + '">\n</head>\n<body>\n' + marked(data.body) + '</body>\n</html>',
-			body = 'data:text/' + format + ';charset=utf-8,' + encodeURIComponent(content);
+			title = data.title || '',
+			author = data.author || '',
+			body = data.body || '',
+			dek = data.dek || '',
+			content = filetype === 'md' ? body : '<!DOCTYPE html>\n<html>\n<head>\n\t<title>' + title + '</title>\n\t<meta name="author" content="' + author + '">\n\t<meta name="description" content="' + dek + '">\n</head>\n<body>\n' + marked(body) + '</body>\n</html>',
+			href = 'data:text/' + format + ';charset=utf-8,' + encodeURIComponent(content);
 			a = document.getElementById('#download') || document.createElement('a');
 
 		a.id = 'download';
-		a.href = body;
+		a.href = href;
 		a.download = Meteor.utils.makeSlug(data.title) + '.' + filetype;
 
 		document.body.appendChild(a);
 		a.click();
 		document.body.removeChild(a);
+	},
+	'click a.delete': function(e) {
+		e.preventDefault();
+		Session.set('modal', {
+			title: 'Delete story',
+			message: 'Move this story to **trash**? Items in trash will be automatically deleted after 30 days.',
+			buttons: ['ok', 'cancel']
+		});
 	},
 	'change input': function(e) {
 		var main = document.querySelector('main'),

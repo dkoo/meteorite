@@ -11,6 +11,8 @@ Template.editStory.onRendered(function() {
 		mode: 'markdown'
 	})
 
+	document.title = this.data.title ? 'Meteorite: ' + this.data.title : 'Meteorite';
+
 	preview = this.find('.preview article');
 
 	preview.innerHTML = marked(cm.getValue());
@@ -42,6 +44,9 @@ Template.editStory.helpers ({
 });
 
 Template.editStory.events({
+	'click .preview': function(e) {
+		Session.set('hideMenu', false);
+	},
 	'click .expand': function(e) {
 		e.preventDefault();
 
@@ -65,6 +70,9 @@ Template.editStory.events({
 
 		if ( input && input !== this[field] ) {
 			Meteor.call('update', this._id, field, input);
+			if ( field === 'title' ) {
+				document.title = input ? 'Meteorite: ' + input : 'Meteorite';
+			}
 		}
 	},
 	'keydown .meta *[contentEditable=true]': function(e) {
