@@ -1,13 +1,10 @@
 Template.stories.events({
 	'click main': function(e) {
 		// close dropdown menus
-		var topbar = document.getElementById('topbar'),
-			links = topbar.querySelector('ul').children;
+		var links = document.querySelectorAll('#topbar li.open');
 		
 		for ( var i = 0; i !== links.length; i++ ) {
-			if ( links[i].className !== e.currentTarget.parentNode.className ) {
-				links[i].classList.remove('open');
-			}
+			links[i].classList.remove('open');
 		}
 	},
 	'scroll main': function(e) {

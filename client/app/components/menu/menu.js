@@ -52,6 +52,7 @@ Template.menu.events({
 	'click a.delete': function(e) {
 		e.preventDefault();
 		Session.set('modal', {
+			key: 'deleteStory',
 			title: 'Delete story',
 			message: 'Move this story to **trash**? Items in trash will be automatically deleted after 30 days.',
 			buttons: ['ok', 'cancel']

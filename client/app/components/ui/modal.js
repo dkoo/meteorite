@@ -20,11 +20,18 @@ Template.modal.helpers({
 });
 
 Template.modal.events({
-	'click .ok': function(e) {
+	'click .deleteStory .ok': function(e) {
 		e.preventDefault();
 
-		FlowRouter.go('/');
-		Session.set('modal', undefined);
+		var storyId = FlowRouter.getParam('id');
+
+		Meteor.call('delete', storyId, Meteor.user()._id, function(err, response) {
+			if ( err ) {
+				console.log(err);
+			}
+			FlowRouter.go('/');
+			Session.set('modal', undefined);
+		});
 	},
 	'click .cancel': function(e) {
 		e.preventDefault();

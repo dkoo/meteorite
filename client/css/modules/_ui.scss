@@ -1,3 +1,31 @@
+button {
+	background-color: #ddd;
+	border: none;
+	border-bottom: 4px solid #ccc;
+	border-radius: 4px;
+	color: white;
+	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	letter-spacing: 0.05em;
+	padding: 0.25em 1.5em;
+	text-shadow: 0px -1px #aaa;
+	text-transform: uppercase;
+	transition: background-color $transition, border-color $transition, border-width 0.125s ease-in-out, transform  0.125s ease-in-out;
+	// @include smallcaps();
+	& + button {
+		margin-left: 0.5em;
+	}
+	&:hover,
+	&:focus {
+		background-color: #ccc;
+		border-color: #aaa;
+	}
+	&:focus {
+		border-width: 1px;
+		transform: translateY(3px);
+	}
+}
+
 .modal {
 	background-color: rgba(0, 0, 0, 0.75);
 	height: 100%;
@@ -20,7 +48,7 @@
 		background-color: white;
 		border-radius: 3px;
 		box-shadow: 0.5em 0.5em 1em rgba(0, 0, 0, 0.25);
-		max-width: 99%;
+		max-width: 450px;
 		padding: 1em;
 		position: relative;
 		a.close {
@@ -33,6 +61,9 @@
 		letter-spacing: 0.05em;
 		line-height: 20px;
 		text-transform: uppercase;
+	}
+	p {
+		text-align: left;
 	}
 	select {
 		margin-bottom: 1em;

@@ -11,6 +11,17 @@ var editor = FlowRouter.group({
 	name: 'editor'
 });
 
+editor.route('/', {
+	action: function() {
+		Meteor.call('create', Meteor.user()._id, function(err, response) {
+			if ( err ) {
+				console.log(err);
+			}
+			FlowRouter.go('/editor/' + response);
+		});
+	}
+});
+
 editor.route('/:id', {
 	action: function() {
 		Session.set('viewing', 'story');

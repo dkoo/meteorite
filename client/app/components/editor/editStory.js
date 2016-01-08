@@ -69,7 +69,7 @@ Template.editStory.events({
 			input = e.currentTarget.textContent;
 
 		if ( input && input !== this[field] ) {
-			Meteor.call('update', this._id, field, input);
+			Meteor.call('update', this._id, Meteor.user()._id, field, input);
 			if ( field === 'title' ) {
 				document.title = input ? 'Meteorite: ' + input : 'Meteorite';
 			}
@@ -95,7 +95,7 @@ Template.editStory.events({
 		// call update method only once user has stopped typing for 1 second
 		timer = setTimeout(function() {
 			if ( input !== self.body ) {
-				Meteor.call('update', self._id, 'body', input);
+				Meteor.call('update', self._id, Meteor.user()._id, 'body', input);
 			}
 		}, 1000);
 	},
