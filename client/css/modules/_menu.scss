@@ -11,7 +11,6 @@ body.sideMenu {
 	box-sizing: border-box;
 	left: 0;
 	line-height: 48px;
-	padding: 0 18px;
 	position: fixed;
 	top: 0;
 	transition: transform $transition;
@@ -25,7 +24,8 @@ body.sideMenu {
 		border: none;
 		display: inline-block;
 		height: 48px;
-		margin-right: 0.5em;
+		margin-left: 18px;
+		margin-right: 0.25em;
 		padding: 0;
 		position: relative;
 		vertical-align: top;

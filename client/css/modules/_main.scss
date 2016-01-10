@@ -84,6 +84,10 @@ main {
 	.preview {
 		max-width: 100%;
 		transition: border $transition, font-size $transition, height $transition, opacity $transition, padding $transition, width $transition;
+		a.expand,
+		a.collapse {
+			display: none;
+		}
 	}
 	.meta {
 		max-height: 4rem;
@@ -129,6 +133,13 @@ main {
 
 @media #{$large} {
 	main {
+		.editor,
+		.preview {
+			a.expand,
+			a.collapse {
+				display: inline-block;
+			}
+		}
 		.editor,
 		.preview {
 			display: inline-block;
