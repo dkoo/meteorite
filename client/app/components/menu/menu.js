@@ -15,6 +15,12 @@ Template.menu.helpers({
 });
 
 Template.menu.events({
+	'click #burger': function(e) {
+		e.preventDefault();
+
+		e.currentTarget.classList.toggle('open');
+		document.body.classList.toggle('sideMenu');
+	},
 	'click #topbar > ul > li > a': function(e) {
 		e.preventDefault();
 		var links = e.currentTarget.parentNode.parentNode.children;
@@ -57,6 +63,14 @@ Template.menu.events({
 			message: 'Move this story to **trash**? Items in trash will be automatically deleted after 30 days.',
 			buttons: ['ok', 'cancel']
 		});
+	},
+	'click .preview a': function(e) {
+		e.preventDefault();
+
+		var main = document.querySelector('main');
+
+		e.target.classList.toggle('active');
+		main.classList.toggle('showPreview');
 	},
 	'change input': function(e) {
 		var main = document.querySelector('main'),

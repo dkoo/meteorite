@@ -1,0 +1,14 @@
+#sideMenu {
+	box-sizing: border-box;
+	height: 100%;
+	margin: 0;
+	position: absolute;
+	transition: visibility $transition;
+	visibility: hidden;
+}
+
+body.sideMenu {
+	#sideMenu {
+		visibility: visible;
+	}
+}

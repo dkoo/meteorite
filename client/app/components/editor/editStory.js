@@ -47,6 +47,9 @@ Template.editStory.events({
 	'click .preview': function(e) {
 		Session.set('hideMenu', false);
 	},
+	'touchstart .editor': function(e) {
+		cm.refresh();
+	},
 	'click .expand': function(e) {
 		e.preventDefault();
 

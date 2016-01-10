@@ -1,15 +1,32 @@
+html,
+body,
+#__blaze-root {
+	height: 100%;
+	overflow: hidden;
+}
+
 body {
-	background-color: white;
+	background-color: #444;
 	font-family: $serif;
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 400;
 	line-height: 24px;
+	&.sideMenu {
+		main {
+			transform: translateX(150px);
+		}
+	}
 }
 
 main {
+	background-color: white;
 	box-sizing: border-box;
+	height: 100%;
+	overflow: scroll;
 	padding-top: 60px;
+	transition: transform $transition;
+	-webkit-overflow-scrolling: touch;
 	&.font {
 		font-size: 1.25em;
 	}
@@ -65,6 +82,7 @@ main {
 	}
 	.editor,
 	.preview {
+		max-width: 100%;
 		transition: border $transition, font-size $transition, height $transition, opacity $transition, padding $transition, width $transition;
 	}
 	.meta {
@@ -78,6 +96,9 @@ main {
 		}
 	}
 	.preview {
+		display: none;
+		opacity: 0;
+		position: absolute;
 		&::before {
 			content: 'Preview';
 		}
@@ -92,26 +113,30 @@ main {
 			max-height: 500px;
 		}
 	}
+	&.showPreview {
+		.editor {
+			display: none;
+			opacity: 0;
+			position: absolute;
+		}
+		.preview {
+			display: block;
+			opacity: 1;
+			position: relative;
+		}
+	}
 }
 
 @media #{$large} {
-	html,
-	body,
-	#__blaze-root {
-		height: 100%;
-		overflow: hidden;
-	}
-
 	main {
-		height: 100%;
-		overflow: scroll;
-		-webkit-overflow-scrolling: touch;
 		.editor,
 		.preview {
 			display: inline-block;
 			height: calc(100% - 4rem);
 			min-height: calc(100% - 4rem);
+			opacity: 1;
 			overflow: scroll;
+			position: relative;
 			vertical-align: top;
 			width: 50%;
 			-webkit-overflow-scrolling: touch;
@@ -155,6 +180,12 @@ main {
 				padding-left: 15%;
 				padding-right: 15%;
 				width: 100%;
+			}
+		}
+		&.showPreview {
+			.editor,
+			.preview {
+				opacity: 1;
 			}
 		}
 	}
