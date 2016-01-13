@@ -8,9 +8,7 @@ Template.storyList.helpers({
 			results;
 
 		Meteor.subscribe('stories', {});
-
-		results = Stories.find( filter, { sort: { createdAt: -1 } } );
-
+		results = Stories.find( filter, { sort: { modified: -1 } } );
 		return results.count() ? results : false;
 	}
 });

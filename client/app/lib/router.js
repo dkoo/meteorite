@@ -2,6 +2,7 @@ FlowRouter.route('/', {
     action: function() {
 		Session.set('viewing', 'stories');
 		Session.set('hideMenu', false);
+		document.body.classList.remove('sideMenu');
         BlazeLayout.render('stories', {content: 'storyList'});
     }
 });

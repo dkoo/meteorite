@@ -26,6 +26,7 @@ Meteor.methods({
 			var update = {};
 
 			update[field] = input;
+			update.modified = Date.now();
 
 			return Stories.update(id, {
 				$set: update
@@ -34,7 +35,7 @@ Meteor.methods({
 			throw new Meteor.Error(500, 'Not authorized.');
 		}
 	},
-	delete: function(id, userId) {
+	trash: function(id, userId) {
 		check(id, String);
 		check(userId, String);
 		if ( userId === this.userId ) {
@@ -48,8 +49,6 @@ Meteor.methods({
 					}
 				};
 
-			console.log(update);
-
 			return Stories.update(id, {
 				$set: update
 			});
@@ -57,7 +56,7 @@ Meteor.methods({
 			throw new Meteor.Error(500, 'Not authorized.');
 		}
 	},
-	undelete: function(id, userId) {
+	untrash: function(id, userId) {
 		check(id, String);
 		check(userId, String);
 		var story = Stories.findOne({ _id: id }),
@@ -77,6 +76,15 @@ Meteor.methods({
 			} else {
 				throw new Meteor.Error(500, 'Trying to undelete a story not in trash.');
 			}
+		} else {
+			throw new Meteor.Error(500, 'Not authorized.');
+		}
+	},
+	delete: function(id, userId) {
+		check(id, String);
+		check(userId, String);
+		if ( userId === this.userId ) {
+			return Stories.remove(id);
 		} else {
 			throw new Meteor.Error(500, 'Not authorized.');
 		}

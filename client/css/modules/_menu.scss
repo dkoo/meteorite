@@ -1,6 +1,17 @@
 body.sideMenu {
 	#topbar {
-		transform: translateX(150px);
+		transform: translateX(200px);
+		a#burger {
+			.l1 {
+				transform: translateY(5px) rotate(-45deg);
+			}
+			.l2 {
+				opacity: 0;
+			}
+			.l3 {
+				transform: translateY(-5px) rotate(45deg);
+			}
+		}
 	}
 }
 
@@ -45,17 +56,6 @@ body.sideMenu {
 			}
 			&.l3 {
 				top: 28px;
-			}
-		}
-		&.open {
-			.l1 {
-				transform: translateY(5px) rotate(-45deg);
-			}
-			.l2 {
-				opacity: 0;
-			}
-			.l3 {
-				transform: translateY(-5px) rotate(45deg);
 			}
 		}
 	}

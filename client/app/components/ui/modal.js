@@ -20,7 +20,20 @@ Template.modal.helpers({
 });
 
 Template.modal.events({
-	'click .deleteStory .ok': function(e) {
+	'click .trashStory .ok': function(e) {
+		e.preventDefault();
+
+		var storyId = FlowRouter.getParam('id');
+
+		Meteor.call('trash', storyId, Meteor.user()._id, function(err, response) {
+			if ( err ) {
+				console.log(err);
+			}
+			FlowRouter.go('/');
+			Session.set('modal', undefined);
+		});
+	},
+	'click .deletePermanently .ok': function(e) {
 		e.preventDefault();
 
 		var storyId = FlowRouter.getParam('id');
