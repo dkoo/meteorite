@@ -6,7 +6,15 @@
 
 				{{{parse message}}}
 
-				{{{showButtons}}}
+				<form>
+					{{#if form}}
+						{{#each form}}
+							{{{generateField}}}
+						{{/each}}
+					{{/if}}
+
+					{{{showButtons}}}
+				</form>
 			</div>
 		</aside>
 	{{/with}}

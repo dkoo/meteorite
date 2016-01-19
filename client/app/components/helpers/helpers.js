@@ -2,8 +2,12 @@ Template.registerHelper('loggedIn', function() {
 	return Meteor.user() ? true : false;
 });
 
+Template.registerHelper('viewing', function(what) {
+	return Session.get('viewing') === what;
+});
+
 // random utilities
-Meteor.utils = {
+Meteor.helpers = {
 	// simple helper to toggle a boolean Session key
 	sessionToggle: function(key) {
 		if ( Session.get(key) ){
@@ -38,28 +42,23 @@ Meteor.utils = {
 			}
 		}
 	},
-	makeSlug: function(str) {
-		var arr = str.split(' '),
-			slug = [],
-			newSlug,
-			existing;
+	appendMessages: function(el, messages) {
+		if ( Array.isArray(messages) && messages.length ) {
+			var ul = document.createElement('ul'),
+				li = document.createElement('li'),
+				message;
 
-		for ( var i = 0, len = arr.length; i !== len; i++ ) {
-			if ( arr[i] ) {
-				// remove punctuation, make all words lowercase, join with hyphens
-				slug.push(arr[i].replace(/[^\w\s-]|_/g, '').replace(/\s+/g, ' ').toLowerCase());
+			ul.classList.add('messages');
+
+			for ( var i = 0; i !== messages.length; i++ ) {
+				message = li.cloneNode();
+				message.textContent = messages[i];
+				ul.appendChild(message);
 			}
+
+			el.appendChild(ul);
+		} else {
+			console.log('error: expected an array of messages');
 		}
-
-		newSlug = slug.join('-').replace('--', '-');
-
-		// existing = Posts.find( { slug: newSlug } );
-
-		// // if there's already one or more posts with this slug, increment the slug
-		// if ( existing.count() ) {
-		// 	newSlug += '-' + ( existing.count() + 1 );
-		// }
-
-		return newSlug;
 	}
 }

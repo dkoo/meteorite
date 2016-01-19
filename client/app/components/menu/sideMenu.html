@@ -1,8 +1,10 @@
 <template name="sideMenu">
 	<ul id="sideMenu">
-		<li><a href="/">All Stories</a></li>
-		<li><a href="#">Edit Profile</a></li>
-		<li><a href="#">About Meteorite</a></li>
+		{{#if viewing "story"}}
+			<li><a href="/">All Stories</a></li>
+		{{/if}}
+		<li><a class="profile" href="#">Edit Profile</a></li>
+		<li><a class="about" href="#">About Meteorite</a></li>
 		<li><a href="#">Log Out</a></li>
 	</ul>
 </template>

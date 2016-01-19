@@ -22,18 +22,19 @@
 						<li><a href="#" class="delete">Delete story</a></li>
 					</ul>
 				</li>
+				<li>
+					<a href="#"><span>Settings</span><i class="fa fa-cog"></i></a>
+					<ul class="settings">
+						<li><input type="checkbox" id="font"><label for="font"></label> Large font</li>
+						<li class="sync"><input type="checkbox" checked="true" id="sync"><label for="sync"></label> Scroll sync</li>
+					</ul>
+				</li>
+				<li class="preview">
+					<a href="#"><i class="fa fa-eye"></i></a>
+				</li>
 			{{/if}}
-			<li>
-				<a href="#"><span>Settings</span><i class="fa fa-cog"></i></a>
-				<ul class="settings">
-					<li><input type="checkbox" id="font"><label for="font"></label> Large font</li>
-					<li class="sync"><input type="checkbox" checked="true" id="sync"><label for="sync"></label> Scroll sync</li>
-				</ul>
-			</li>
-			<li class="preview">
-				<a href="#"><i class="fa fa-eye"></i></a>
-			</li>
-			<li>{{> loginButtons align="right"}}</li>
+			<!-- <li>{{> loginButtons align="right"}}</li> -->
+			<!-- <li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li> -->
 		</ul>
 	</header>
 </template>

@@ -4,12 +4,31 @@ Template.storyList.onRendered(function() {
 
 Template.storyList.helpers({
 	stories: function() {
-		var filter = {},
+		var user = Meteor.user(),
+			filter = {},
+			search = Session.get('search') || '',
+			limit = Session.get('subLimit') || 10,
+			options = Session.get('subOptions') || {
+				limit: limit,
+				sort: { modified: -1 }
+			},
 			results;
 
-		Meteor.subscribe('stories', {});
-		results = Stories.find( filter, { sort: { modified: -1 } } );
-		return results.count() ? results : false;
+		if ( user ) {
+			filter.owner = user._id;
+
+			Meteor.subscribe('stories', filter, options, search, function(err, response) {
+				if ( err ) {
+					console.log(err);
+				}
+				// Session.set('loading', false);
+			});
+
+			results = Stories.find( filter, { sort: { modified: -1 } } );
+			return results.count() ? results : false;
+		} else {
+			return false;
+		}
 	}
 });
 

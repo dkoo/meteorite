@@ -56,7 +56,7 @@ Template.editStory.events({
 		var parent = e.currentTarget.parentNode,
 			section = parent.classList[0];
 
-		Meteor.utils.sessionToggle(section + 'Expanded');
+		Meteor.helpers.sessionToggle(section + 'Expanded');
 
 		parent.parentNode.classList.toggle(section);
 	},

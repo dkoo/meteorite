@@ -16,11 +16,11 @@ button {
 		margin-left: 0.5em;
 	}
 	&:hover,
-	&:focus {
+	&:active {
 		background-color: #ccc;
 		border-color: #aaa;
 	}
-	&:focus {
+	&:active {
 		border-width: 1px;
 		transform: translateY(3px);
 	}
@@ -28,10 +28,13 @@ button {
 
 .modal {
 	background-color: rgba(0, 0, 0, 0.75);
+	box-sizing: border-box;
 	font-family: $sans;
 	font-size: 16px;
 	height: 100%;
 	line-height: 20px;
+	overflow: auto;
+	padding: 1em 0;
 	position: fixed;
 	text-align: center;
 	top: 0;
@@ -68,45 +71,72 @@ button {
 	p {
 		text-align: left;
 	}
-	select {
-		margin-bottom: 1em;
+	a {
+		color: #6495ED;
+		&:hover {
+			color: #aaa;
+		}
+	}
+	label {
+		display: block;
+		text-align: left;
+		span {
+			display: block;
+			@include smallcaps();
+		}
+		&.valid span::after,
+		&.invalid span::after {
+			display: inline-block;
+			margin-left: 0.5em;
+		}
+		&.valid span::after {
+			color: mediumseagreen;
+			content: '✓';
+		}
+		&.invalid span::after {
+			color: indianred;
+			content: '✖';
+		}
 	}
 	input,
+	select,
 	textarea {
-		border: 1px solid transparent;
-		border-radius: 3px;
+		background-color: white;
+		border: 1px solid #ddd;
+		border-radius: 2px;
+		box-sizing: border-box;
 		display: block;
-		font-size: 12px;
-		line-height: 20px;
+		font-size: 16px;
 		margin-bottom: 1em;
 		max-width: 100%;
+		padding: 0.25em;
 		resize: none;
-		text-align: center;
 		transition: border-color 0.25s ease-in-out;
 		width: 450px;
-		&[name="name"] {
-			font-family: $sans;
-			font-size: 14px;
-			font-weight: 400;
-			letter-spacing: 0.15em;
-			line-height: 20px;
-			text-transform: uppercase;
-		}
-		&[name="tags"] {
-			font-family: $serif;
-			font-size: 13px;
-			font-style: italic;
-			line-height: 15px;
-		}
-		&[name="notes"],
-		&[name="sources"] {
-			text-align: left;
-		}
 		&:hover {
-			border-color: #ddd;
+			border-color: #ccc;
 		}
 		&:focus {
 			border-color: #aaa;
 		}
+	}
+	select::first-child {
+		color: #ccc;
+		font-style: italic;
+	}
+	.messages {
+		font-size: 14px;
+		line-height: 18px;
+		list-style: none;
+		padding: 0;
+		li + li {
+			margin-top: 1em;
+		}
+	}
+}
+
+@media #{$large} {
+	.modal div {
+		max-width: 500px;
 	}
 }

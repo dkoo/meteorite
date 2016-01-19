@@ -194,7 +194,9 @@ main {
 		&.showPreview {
 			.editor,
 			.preview {
+				display: inline-block;
 				opacity: 1;
+				position: relative;
 			}
 		}
 	}
