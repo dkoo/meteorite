@@ -12,7 +12,21 @@
 		<a href="/" id="logo">Meteorite</a>
 
 		<ul>
-			{{#if viewing "story"}}
+			{{#if viewing "stories"}}
+				<li>
+					<a href="#" class="search"><span>Search</span><i class="fa fa-search"></i></a>
+				</li>
+				<li>
+					<a href="#"><span>Sort By</span><i class="fa fa-sort"></i></a>
+					<ul class="sort">
+						<li><a href="#" class="sort modified">Modified</a></li>
+						<li><a href="#" class="sort created">Created</a></li>
+						<li><a href="#" class="sort title">Title</a></li>
+						<li><a href="#" class="sort author">Byline</a></li>
+						<li><a href="#" class="sort owner">Creator</a></li>
+					</ul>
+				</li>
+			{{else}}
 				<li>
 					<a href="#"><span>Actions</span><i class="fa fa-pencil-square-o"></i></a>
 					<ul class="actions">

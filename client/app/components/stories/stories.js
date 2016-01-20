@@ -10,9 +10,10 @@ Template.stories.events({
 		}
 	},
 	'scroll main': function(e) {
-		var scrolled = e.target.scrollTop,
-			timer = Date.now();
-		if ( Session.get('viewing', 'story') ) {
+		if ( Session.get('viewing') === 'story' ) {
+			var scrolled = e.target.scrollTop,
+				timer = Date.now();
+
 			var old = Session.get('scrolled') || {
 				scrolled: 0,
 				timer: 0
@@ -20,13 +21,9 @@ Template.stories.events({
 
 			if ( timer > old.timer + 250 ) {
 				if ( scrolled > old.scrolled && scrolled > 100 ) {
-					if ( !Session.get('hideMenu') ) {
-						Session.set('hideMenu', true);
-					}
+					Session.set('hideMenu', true);
 				} else {
-					if ( Session.get('hideMenu') ) {
-						Session.set('hideMenu', false);
-					}
+					Session.set('hideMenu', false);
 				}
 
 				Session.set('scrolled', {
@@ -34,10 +31,12 @@ Template.stories.events({
 					timer: timer
 				});
 			} else {
-				if ( scrolled < 101 && Session.get('hideMenu') ) {
+				if ( scrolled < 101 ) {
 					Session.set('hideMenu', false);
 				}
 			}
+		} else {
+			return false;
 		}
 	}
 });

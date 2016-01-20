@@ -29,6 +29,16 @@ Template.storyList.helpers({
 		} else {
 			return false;
 		}
+	},
+	summary: function() {
+		if ( this.dek ) {
+			return this.dek;
+		} else {
+			var arr = this.body.split(' '),
+				dek = arr.slice(0, 25).join(' ') + '&#160;&#8230;';
+
+			return arr.length >= 25 ? marked(dek) : marked(this.body);
+		}
 	}
 });
 

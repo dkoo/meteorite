@@ -1,0 +1,33 @@
+.stories {
+	ul {
+		margin: 0;
+		padding: 0;
+		li {
+			border: 1px solid #ddd;
+			border-radius: 2px;
+			box-shadow: 1px 1px 0 rgba(0,0,0,0.125);
+			box-sizing: border-box;
+			font-family: $sans;
+			display: block;
+			& + li {
+				margin-top: 1em;
+			}
+			a {
+				display: block;
+				padding: 0.5em;
+				b,
+				span {
+					display: block;
+				}
+				span {
+					color: #aaa;
+					@include smallcaps();
+				}
+				p {
+					font-size: 14px;
+					line-height: 20px;
+				}
+			}
+		}
+	}
+}

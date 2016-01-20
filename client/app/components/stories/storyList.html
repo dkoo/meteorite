@@ -1,13 +1,15 @@
 <template name="storyList">
 	<div class="stories">
-		<h1>Stories</h1>
-
 		<ul>
-			<li><a class="new" href="/editor/new" title="Start a new story">New story</a></li>
-			{{#if stories}}
-				{{#each stories}}
-					<li><a href="/editor/{{_id}}">{{title}}</a></li>
-				{{/each}}
+			<li>
+				<a class="new" href="/editor/new" title="Start a new story"><i class="fa fa-plus-circle"></i> Add a new story</a>
+			</li>{{#if stories}}{{#each stories}}<li>
+				<a href="/editor/{{_id}}">
+					<b>{{title}}</b>
+					<span>{{date}}</span>
+					<p>{{{summary}}}</p>
+				</a>
+			</li>{{/each}}
 			{{else}}
 				<p>No stories!</p>
 			{{/if}}

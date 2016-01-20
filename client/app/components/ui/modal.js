@@ -228,8 +228,6 @@ Template.modal.events({
 			}
 		}
 
-		console.log(data);
-
 		if ( data.user || data.email || data.role ) {
 			Meteor.call('updateProfile', Meteor.user()._id, data, function(err, response) {
 				if ( err ) {

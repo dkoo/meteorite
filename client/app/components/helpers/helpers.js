@@ -1,9 +1,21 @@
+// check whether logged in
 Template.registerHelper('loggedIn', function() {
 	return Meteor.user() ? true : false;
 });
 
+
+// viewing stories or story?
 Template.registerHelper('viewing', function(what) {
 	return Session.get('viewing') === what;
+});
+
+// print Date objects in human-readable form
+Template.registerHelper('date', function() {
+	var date = this.modified || this.createdAt,
+		action = this.modified ? 'Modified ' : 'Created ',
+		prettyDate = Meteor.utils.prettifyDate(new Date(date));
+
+	return action + prettyDate[0] + ' ' + prettyDate[1] + ' at ' + prettyDate[2];
 });
 
 // random utilities
