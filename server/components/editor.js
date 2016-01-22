@@ -6,6 +6,7 @@ Meteor.methods({
 			var update = {
 				owner: this.userId,
 				createdAt: Date.now(),
+				modified: Date.now(),
 				title: 'Untitled story',
 				body: 'Story content goes here. Try typing some **Markdown**!',
 				status: 'draft'

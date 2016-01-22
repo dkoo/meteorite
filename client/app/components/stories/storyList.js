@@ -8,11 +8,18 @@ Template.storyList.helpers({
 			filter = {},
 			search = Session.get('search') || '',
 			limit = Session.get('subLimit') || 10,
-			options = Session.get('subOptions') || {
-				limit: limit,
-				sort: { modified: -1 }
-			},
+			sortDir = Session.get('sortAsc') ? 1 : -1,
+			sortBy = Session.get('sortBy') || 'modified',
+			sort = Session.get('subSort') || {},
+			options,
 			results;
+
+		sort[sortBy] = sortDir;
+
+		options = Session.get('subOptions') || {
+			limit: limit,
+			sort: sort
+		};
 
 		if ( user ) {
 			filter.owner = user._id;
@@ -24,7 +31,7 @@ Template.storyList.helpers({
 				// Session.set('loading', false);
 			});
 
-			results = Stories.find( filter, { sort: { modified: -1 } } );
+			results = Stories.find( filter, options );
 			return results.count() ? results : false;
 		} else {
 			return false;

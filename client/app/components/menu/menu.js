@@ -8,6 +8,12 @@ Template.menu.helpers({
 		} else {
 			return false;
 		}
+	},
+	active: function(sortBy) {
+		return sortBy === Session.get('sortBy') ? 'active': '';
+	},
+	dir: function() {
+		return Session.get('sortAsc') ? 'up' : 'down';
 	}
 });
 
@@ -28,17 +34,41 @@ Template.menu.events({
 
 		e.currentTarget.parentNode.classList.toggle('open');
 	},
+	'click a.sort': function(e, t) {
+		e.preventDefault();
+		var sortBy = Session.get('sortBy') || 'modified',
+			active = t.find('.sort .active'),
+			button = e.currentTarget.classList;
+
+		if ( button.contains(sortBy) ) {
+			// toggle ascending or descending if clicking on the same sort criterion
+			Meteor.helpers.sessionToggle('sortAsc');
+		} else {
+			Session.set('sortBy', button[1]);
+			sortBy = button[1];
+
+			// sort alphabetically if criterion is title/byline/owner, or descending if by date
+			if ( sortBy === 'title' || sortBy === 'author' || sortBy === 'owner' ) {
+				Session.set('sortAsc', true);
+			} else {
+				Session.set('sortAsc', false);
+			}
+
+			active.classList.remove('active');
+			e.currentTarget.classList.add('active');
+		}
+	},
 	'click a.export': function(e) {
 		e.preventDefault();
 		var editor = document.querySelector('.editor'),
-			filetype = e.currentTarget.className,
-			format = filetype === 'md' ? 'plain' : 'html',
+			filetype = e.currentTarget.classList,
+			format = filetype.contains('md') ? 'plain' : 'html',
 			data = Blaze.getData(editor),
 			title = data.title || '',
 			author = data.author || '',
 			body = data.body || '',
 			dek = data.dek || '',
-			content = filetype === 'md' ? body : '<!DOCTYPE html>\n<html>\n<head>\n\t<title>' + title + '</title>\n\t<meta name="author" content="' + author + '">\n\t<meta name="description" content="' + dek + '">\n</head>\n<body>\n' + marked(body) + '</body>\n</html>',
+			content = filetype.contains('md') ? body : '<!DOCTYPE html>\n<html>\n<head>\n\t<title>' + title + '</title>\n\t<meta name="author" content="' + author + '">\n\t<meta name="description" content="' + dek + '">\n</head>\n<body>\n' + marked(body) + '</body>\n</html>',
 			href = 'data:text/' + format + ';charset=utf-8,' + encodeURIComponent(content);
 			a = document.getElementById('#download') || document.createElement('a');
 

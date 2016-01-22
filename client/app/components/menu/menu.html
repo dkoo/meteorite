@@ -19,11 +19,11 @@
 				<li>
 					<a href="#"><span>Sort By</span><i class="fa fa-sort"></i></a>
 					<ul class="sort">
-						<li><a href="#" class="sort modified">Modified</a></li>
-						<li><a href="#" class="sort created">Created</a></li>
-						<li><a href="#" class="sort title">Title</a></li>
-						<li><a href="#" class="sort author">Byline</a></li>
-						<li><a href="#" class="sort owner">Creator</a></li>
+						<li><a href="#" class="sort modified {{active "modified"}}">Modified <i class="fa fa-chevron-{{dir}}"></i></a></li>
+						<li><a href="#" class="sort createdAt {{active "createdAt"}}">Created <i class="fa fa-chevron-{{dir}}"></i></a></li>
+						<li><a href="#" class="sort title {{active "title"}}">Title <i class="fa fa-chevron-{{dir}}"></i></a></li>
+						<li><a href="#" class="sort author {{active "author"}}">Byline <i class="fa fa-chevron-{{dir}}"></i></a></li>
+						<li><a href="#" class="sort owner {{active "owner"}}">Creator <i class="fa fa-chevron-{{dir}}"></i></a></li>
 					</ul>
 				</li>
 			{{else}}

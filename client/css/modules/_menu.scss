@@ -125,8 +125,16 @@ body.sideMenu {
 						background-color: #aaa;
 						display: block;
 						padding: 0 18px;
-						&:hover {
+						i {
+							display: none;
+							margin-left: 0.5em;
+						}
+						&:hover,
+						&.active {
 							background-color: #888;
+						}
+						&.active i {
+							display: inline-block;
 						}
 					}
 				}
