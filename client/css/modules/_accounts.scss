@@ -1,0 +1,40 @@
+.accounts {
+	padding: 0;
+	position: relative;
+	text-align: center;
+	h1#logo {
+		font-weight: 400;
+		margin-top: 1em;
+		position: absolute;
+		text-align: center;
+		width: 100%;
+	}
+	&::after,
+	form {
+		display: inline-block;
+		vertical-align: middle;
+	}
+	&::after {
+		content: '';
+		height: 100%;
+	}
+	form {
+		margin: 5em 0;
+		max-width: 85%;
+		width: 350px;
+		p {
+			font-size: 14px;
+			line-height: 18px;
+			text-align: left;
+		}
+		label {
+			text-align: left;
+		}
+		a.forgot {
+			display: block;
+			font-size: 14px;
+			line-height: 18px;
+			margin-top: 1em;
+		}
+	}
+}

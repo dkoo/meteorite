@@ -1,10 +1,12 @@
 <template name="stories">
-	{{> sideMenu}}
-	{{> menu}}
-	<main class="sync">
-
-		{{#if loggedIn}}
+	{{#if loggedIn}}
+		{{> sideMenu}}
+		{{> menu}}
+		<main class="sync">
 			{{> Template.dynamic template=content}}
-		{{/if}}
-	</main>
+		</main>
+	{{else}}
+		<!-- {{> loginButtons}} -->
+		{{> intro}}
+	{{/if}}
 </template>

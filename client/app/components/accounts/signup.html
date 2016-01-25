@@ -1,0 +1,37 @@
+<template name="signup">
+	{{#if activating}}
+		<form id="activate">
+			<h2>Activate account</h2>
+
+			<p>You’re almost done! Choose a password to activate your account.</p>
+
+			<label for="password">
+				<span>Password</span>
+				<input type="password" id="password" name="password">
+			</label>
+			<label for="confirm">
+				<span>Confirm Password</span>
+				<input type="password" id="confirm" name="confirm">
+			</label>
+
+			<button class="activate ok">Complete sign-up</button>
+		</form>
+	{{else}}
+		<form id="signup">
+			<h2>Sign up</h2>
+
+			<p>Sign up for a free Meteorite account here. Please note that this application instance is hosted for demo purposes only. Data and user information are not guaranteed to persist.</p>
+
+			<label for="user">
+				<span>Username</span>
+				<input type="text" id="user" name="user">
+			</label>
+			<label for="email">
+				<span>E-mail address</span>
+				<input type="email" id="email" name="email">
+			</label>
+			<button class="signup ok">Sign up</button>
+			<button class="login">Log in</button>
+		</form>
+	{{/if}}
+</template>

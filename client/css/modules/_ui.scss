@@ -1,3 +1,60 @@
+form {
+	label {
+		display: block;
+		text-align: left;
+		span {
+			display: block;
+			@include smallcaps();
+		}
+		&.valid span::after,
+		&.invalid span::after {
+			display: inline-block;
+			margin-left: 0.5em;
+		}
+		&.valid span::after {
+			color: mediumseagreen;
+			content: '✓';
+		}
+		&.invalid span::after {
+			color: indianred;
+			content: '✖';
+		}
+	}
+	input,
+	select,
+	textarea {
+		background-color: white;
+		border: 1px solid #ddd;
+		border-radius: 2px;
+		box-sizing: border-box;
+		display: block;
+		font-size: 16px;
+		margin-bottom: 1em;
+		max-width: 100%;
+		padding: 0.25em;
+		resize: none;
+		transition: border-color 0.25s ease-in-out;
+		width: 450px;
+		&:hover {
+			border-color: #ccc;
+		}
+		&:focus {
+			border-color: #aaa;
+		}
+	}
+	select::first-child {
+		color: #ccc;
+		font-style: italic;
+	}
+	.messages {
+		color: indianred;
+		font-size: 12px;
+		line-height: 16px;
+		list-style: none;
+		padding: 0;
+	}
+}
+
 button {
 	background-color: #ddd;
 	border: none;
@@ -23,6 +80,13 @@ button {
 	&:active {
 		border-width: 1px;
 		transform: translateY(3px);
+	}
+	&.ok {
+		background-color: mediumseagreen;
+		&:hover,
+		&:active {
+			background-color: #60b044;
+		}
 	}
 }
 
@@ -75,62 +139,6 @@ button {
 		color: #6495ED;
 		&:hover {
 			color: #aaa;
-		}
-	}
-	label {
-		display: block;
-		text-align: left;
-		span {
-			display: block;
-			@include smallcaps();
-		}
-		&.valid span::after,
-		&.invalid span::after {
-			display: inline-block;
-			margin-left: 0.5em;
-		}
-		&.valid span::after {
-			color: mediumseagreen;
-			content: '✓';
-		}
-		&.invalid span::after {
-			color: indianred;
-			content: '✖';
-		}
-	}
-	input,
-	select,
-	textarea {
-		background-color: white;
-		border: 1px solid #ddd;
-		border-radius: 2px;
-		box-sizing: border-box;
-		display: block;
-		font-size: 16px;
-		margin-bottom: 1em;
-		max-width: 100%;
-		padding: 0.25em;
-		resize: none;
-		transition: border-color 0.25s ease-in-out;
-		width: 450px;
-		&:hover {
-			border-color: #ccc;
-		}
-		&:focus {
-			border-color: #aaa;
-		}
-	}
-	select::first-child {
-		color: #ccc;
-		font-style: italic;
-	}
-	.messages {
-		font-size: 14px;
-		line-height: 18px;
-		list-style: none;
-		padding: 0;
-		li + li {
-			margin-top: 1em;
 		}
 	}
 }

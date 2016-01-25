@@ -12,7 +12,7 @@ Template.modal.helpers({
 
 		switch ( this.id ) {
 			case 'user':
-				placeholder = user.profile.user || '';
+				placeholder = user.username || '';
 				break;
 			case 'email':
 				placeholder = user.emails[0].address;
@@ -112,7 +112,7 @@ Template.modal.events({
 		if ( !e.target.value ) {
 			var user = Meteor.user();
 			if ( e.target.id === 'user' || e.target.id === 'email' ) {
-				e.target.value = e.target.id === 'user' ? user.profile.user : user.emails[0].address;
+				e.target.value = e.target.id === 'user' ? user.username : user.emails[0].address;
 			}
 
 			e.target.parentNode.classList.remove('invalid');
@@ -121,7 +121,7 @@ Template.modal.events({
 	},
 	// validate username on the fly
 	'input .profile form #user': function(e) {
-		Meteor.call('checkUsername', Meteor.user()._id, e.target.value, function(err, response) {
+		Meteor.call('checkUsername', e.target.value, function(err, response) {
 			if ( err ) {
 				e.target.parentNode.classList.remove('valid');
 				e.target.parentNode.classList.add('invalid');
@@ -164,7 +164,7 @@ Template.modal.events({
 		}
 
 		if ( e.target.user.value ) {
-			if ( e.target.user.value !== user.profile.user ) {
+			if ( e.target.user.value !== user.username ) {
 				data.user = e.target.user.value;
 			}
 		} else {

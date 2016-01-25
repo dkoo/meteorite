@@ -1,3 +1,5 @@
+// root
+
 FlowRouter.route('/', {
     action: function() {
 		Session.set('viewing', 'stories');
@@ -7,6 +9,30 @@ FlowRouter.route('/', {
     }
 });
 
+// login/signup routes
+var accounts = FlowRouter.group({
+	name: 'accounts'
+});
+
+accounts.route('/login', {
+	action: function() {
+		BlazeLayout.render('accounts', {content: 'login'});
+	}
+});
+
+accounts.route('/signup', {
+	action: function() {
+		BlazeLayout.render('accounts', {content: 'signup'});
+	}
+});
+
+accounts.route('/forgot', {
+	action: function() {
+		BlazeLayout.render('accounts', {content: 'forgot'});
+	}
+});
+
+// editor routes
 var editor = FlowRouter.group({
 	prefix: '/editor',
 	name: 'editor'

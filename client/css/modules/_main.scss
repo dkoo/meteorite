@@ -41,6 +41,31 @@ main {
 		margin: 0;
 		padding: 0;
 	}
+	&.intro,
+	&.accounts {
+		font-family: $sans;
+		h1,
+		h2,
+		h3 {
+			font-weight: 700;
+			letter-spacing: 0.05em;
+			margin-bottom: 1em;
+			text-align: left;
+			text-transform: uppercase;
+		}
+		h1 {
+			font-size: 32px;
+		}
+		h2 {
+			font-size: 18px;
+		}
+	}
+	a {
+		color: #6495ED;
+		&:hover {
+			color: #aaa;
+		}
+	}
 	.meta,
 	.editor,
 	.preview {
@@ -55,10 +80,6 @@ main {
 			@include smallcaps();
 		}
 		a {
-			color: #6495ED;
-			&:hover {
-				color: #aaa;
-			}
 			&.expand,
 			&.collapse {
 				background-color: white;
