@@ -131,6 +131,12 @@ main {
 	.stories {
 		box-sizing: border-box;
 		padding: 1em;
+		a {
+			color: black;
+			&:hover {
+				color: #aaa;
+			}
+		}
 	}
 	// expanded styles
 	&.meta section {

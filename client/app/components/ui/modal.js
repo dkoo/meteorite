@@ -52,11 +52,13 @@ Template.modal.helpers({
 	},
 	showButtons: function() {
 		var html = '',
-			buttons = this.buttons;
+			buttons = this.buttons,
+			ok;
 
 		if ( buttons && buttons.length ) {
 			for ( var i = 0; i !== buttons.length; i++ ) {
-				html += '<button class="' + buttons[i] + '">' + buttons[i] + '</button>';
+				ok = buttons[i] === 'save' ? ' ok' : '';
+				html += '<button class="' + buttons[i] + ok + '">' + buttons[i] + '</button>';
 			}
 		}
 
@@ -155,13 +157,7 @@ Template.modal.events({
 		e.preventDefault();
 		var data = {},
 			user = Meteor.user(),
-			messages = [],
-			priorMessages = e.target.querySelector('.messages');
-
-		// clear out any existing messages
-		if ( priorMessages ) {
-			priorMessages.parentNode.removeChild(priorMessages);
-		}
+			messages = [];
 
 		if ( e.target.user.value ) {
 			if ( e.target.user.value !== user.username ) {

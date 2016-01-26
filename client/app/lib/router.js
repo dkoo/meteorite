@@ -1,10 +1,14 @@
-// root
+function reset() {
+	Session.set('modal', undefined);
+	Session.set('viewing', 'stories');
+	Session.set('hideMenu', false);
+	document.body.classList.remove('sideMenu');
+}
 
+// root
 FlowRouter.route('/', {
     action: function() {
-		Session.set('viewing', 'stories');
-		Session.set('hideMenu', false);
-		document.body.classList.remove('sideMenu');
+    	reset();
         BlazeLayout.render('stories', {content: 'storyList'});
     }
 });
@@ -16,18 +20,27 @@ var accounts = FlowRouter.group({
 
 accounts.route('/login', {
 	action: function() {
-		BlazeLayout.render('accounts', {content: 'login'});
+		if ( !!Meteor.user() ) {
+			FlowRouter.go('/');
+		} else {
+			BlazeLayout.render('accounts', {content: 'login'});
+		}
 	}
 });
 
 accounts.route('/signup', {
 	action: function() {
-		BlazeLayout.render('accounts', {content: 'signup'});
+		if ( !!Meteor.user() ) {
+			FlowRouter.go('/');
+		} else {
+			BlazeLayout.render('accounts', {content: 'signup'});
+		}
 	}
 });
 
 accounts.route('/forgot', {
 	action: function() {
+		reset();
 		BlazeLayout.render('accounts', {content: 'forgot'});
 	}
 });
@@ -40,11 +53,13 @@ var editor = FlowRouter.group({
 
 editor.route('/', {
 	action: function() {
+		Session.set('loading', true);
 		Meteor.call('create', Meteor.user()._id, function(err, response) {
 			if ( err ) {
 				console.log(err);
 			}
 			FlowRouter.go('/editor/' + response);
+			Session.set('loading', false);
 		});
 	}
 });

@@ -1,3 +1,8 @@
+// show loading screen
+Template.registerHelper('loading', function() {
+	return Session.get('loading');
+});
+
 // check whether logged in
 Template.registerHelper('loggedIn', function() {
 	return Meteor.user() ? true : false;
@@ -55,6 +60,13 @@ Meteor.helpers = {
 		}
 	},
 	appendMessages: function(el, messages) {
+		var priorMessages = el.querySelector('.messages');
+
+		// clear out any existing messages
+		if ( priorMessages ) {
+			priorMessages.parentNode.removeChild(priorMessages);
+		};
+
 		if ( Array.isArray(messages) && messages.length ) {
 			var ul = document.createElement('ul'),
 				li = document.createElement('li'),

@@ -1,6 +1,8 @@
 form {
 	label {
 		display: block;
+		margin: auto;
+		max-width: 450px;
 		text-align: left;
 		span {
 			display: block;
@@ -34,7 +36,7 @@ form {
 		padding: 0.25em;
 		resize: none;
 		transition: border-color 0.25s ease-in-out;
-		width: 450px;
+		width: 100%;
 		&:hover {
 			border-color: #ccc;
 		}
@@ -64,6 +66,7 @@ button {
 	font-family: $sans;
 	font-size: 14px;
 	letter-spacing: 0.05em;
+	margin-top: 0.5em;
 	padding: 0.25em 1.5em;
 	text-shadow: 0px -1px #aaa;
 	text-transform: uppercase;
@@ -140,6 +143,55 @@ button {
 		&:hover {
 			color: #aaa;
 		}
+	}
+}
+
+// animated loading overlay
+.loading {
+	background-color: rgba(255,255,255,0.75);
+	height: 100%;
+	overflow: hidden;
+	position: fixed;
+	text-align: center;
+	width: 100%;
+	z-index: 100;
+	&::after,
+	.spinner {
+		display: inline-block;
+		vertical-align: middle;
+	}
+	&::after {
+		content: '';
+		height: 100%;
+	}
+	.spinner {
+		margin: auto;
+		width: 70px;
+		text-align: center;
+		& > div {
+			animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+			background-color: #333;
+			border-radius: 100%;
+			display: inline-block;
+			height: 18px;
+			width: 18px;
+		}
+		.bounce1 {
+			animation-delay: -0.32s;
+		}
+
+		.bounce2 {
+			animation-delay: -0.16s;
+		}
+	}
+}
+
+// keyframes for loading animation
+@keyframes sk-bouncedelay {
+	0%, 80%, 100% { 
+		transform: scale(0);
+	} 40% { 
+		transform: scale(1.0);
 	}
 }
 

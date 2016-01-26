@@ -1,3 +1,10 @@
+Template.login.onRendered(function() {
+	if ( Session.get('messages') ) {
+		Meteor.helpers.appendMessages(this.find('#login'), Session.get('messages'));
+		Session.set('messages', undefined);
+	}
+});
+
 Template.login.events({
 	'click .signup': function(e) {
 		e.preventDefault();
@@ -11,13 +18,7 @@ Template.login.events({
 			user = {
 				username: e.target.user.value.trim().toLowerCase(),
 				password: e.target.password.value
-			},
-			priorMessages = e.target.querySelector('.messages');
-
-		// clear out any existing messages
-		if ( priorMessages ) {
-			priorMessages.parentNode.removeChild(priorMessages);
-		};
+			};
 
 		// validate email and password
 		if ( !user.username || !user.password ) { // if there's no email/password or the email doesn't contain an @ character
@@ -34,6 +35,8 @@ Template.login.events({
 			return false;
 		}
 
+		Session.set('loading', true);
+
 		Meteor.loginWithPassword(user.username, user.password, function(err){
 			// handle callback errors
 			if (err) {
@@ -43,7 +46,9 @@ Template.login.events({
 			} else {
 				// successful login
 				console.log('logging in');
+				FlowRouter.go('/');
 			}
+			Session.set('loading', false);
 		});
 		return false;
 	}

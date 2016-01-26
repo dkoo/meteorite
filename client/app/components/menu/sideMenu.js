@@ -15,7 +15,7 @@ Template.sideMenu.events({
 		Session.set('modal', {
 			key: 'profile',
 			title: 'Edit Profile',
-			message: 'Change your user profile information below.',
+			message: 'Change your user profile information below. Forgot your password? [Reset it here](/forgot).',
 			form: [
 				{
 					type: 'text',
@@ -27,12 +27,12 @@ Template.sideMenu.events({
 					id: 'email',
 					label: 'E-mail Address'
 				},
-				{
-					type: 'select',
-					id: 'role',
-					label: 'User Role',
-					options: ['-- select --', 'Contributor', 'Editor', 'Fact Checker', 'Copy Editor', 'Producer']
-				},
+				// {
+				// 	type: 'select',
+				// 	id: 'role',
+				// 	label: 'User Role',
+				// 	options: ['-- select --', 'Contributor', 'Editor', 'Fact Checker', 'Copy Editor', 'Producer']
+				// },
 				{
 					type: 'password',
 					id: 'oldpw',
@@ -50,6 +50,15 @@ Template.sideMenu.events({
 				}
 			],
 			buttons: ['save', 'close']
+		});
+	},
+	'click .logout': function(e) {
+		e.preventDefault();
+		Meteor.logout(function() {
+			Session.set('hideMenu', false);
+			document.body.classList.remove('sideMenu');
+			Session.set('messages', ['Successfully logged out.']);
+			FlowRouter.go('/login');
 		});
 	}
 });

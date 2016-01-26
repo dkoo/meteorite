@@ -1,3 +1,35 @@
 <template name="forgot">
-	<h1>Recover Password</h1>
+	{{#if resetting}}
+		<form id="reset">
+			<h2>Reset Your Password</h2>
+
+			<p>Enter a new password below to reset your account.</p>
+
+			<label for="password">
+				<span>Your New Password</span>
+				<input type="password" id="password" name="password" required>
+			</label>
+
+			<label for="confirm">
+				<span>Your New Password Again</span>
+				<input type="password" id="confirm" name="confirm" required>
+			</label>
+
+			<button class="reset ok">Reset Password</button>
+		</form>
+	{{else}}
+		<form id="start-reset">
+			<h2>Recover Password</h2>
+
+			<p>Forgot your password? No problem. Enter your account e-mail address and we’ll send you a link to create a new password.</p>
+
+			<label for="email">
+				<span>Account E-mail Address</span>
+				<input type="text" id="email" name="email" required>
+			</label>
+
+			<button class="forgot ok">Send recovery e-mail</button>
+			<button class="back">Back</button>
+		</form>
+	{{/if}}
 </template>
