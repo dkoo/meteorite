@@ -23,7 +23,12 @@ Template.menu.events({
 		document.body.classList.toggle('sideMenu');
 	},
 	'click #topbar > ul > li > a': function(e) {
-		e.preventDefault();
+		if ( e.currentTarget.className !== 'search' ) {
+			e.preventDefault();
+
+			e.currentTarget.parentNode.classList.toggle('open');
+		}
+		
 		var links = e.currentTarget.parentNode.parentNode.children;
 		
 		for ( var i = 0; i !== links.length; i++ ) {
@@ -31,8 +36,6 @@ Template.menu.events({
 				links[i].classList.remove('open');
 			}
 		}
-
-		e.currentTarget.parentNode.classList.toggle('open');
 	},
 	'click a.sort': function(e, t) {
 		e.preventDefault();
@@ -60,15 +63,16 @@ Template.menu.events({
 	},
 	'click a.export': function(e) {
 		e.preventDefault();
+		console.log(e.currentTarget.classList);
 		var editor = document.querySelector('.editor'),
-			filetype = e.currentTarget.classList,
-			format = filetype.contains('md') ? 'plain' : 'html',
+			filetype = e.currentTarget.classList[1],
+			format = filetype === 'md' ? 'plain' : 'html',
 			data = Blaze.getData(editor),
 			title = data.title || '',
 			author = data.author || '',
 			body = data.body || '',
 			dek = data.dek || '',
-			content = filetype.contains('md') ? body : '<!DOCTYPE html>\n<html>\n<head>\n\t<title>' + title + '</title>\n\t<meta name="author" content="' + author + '">\n\t<meta name="description" content="' + dek + '">\n</head>\n<body>\n' + marked(body) + '</body>\n</html>',
+			content = filetype === 'md' ? body : '<!DOCTYPE html>\n<html>\n<head>\n\t<title>' + title + '</title>\n\t<meta name="author" content="' + author + '">\n\t<meta name="description" content="' + dek + '">\n</head>\n<body>\n' + marked(body) + '</body>\n</html>',
 			href = 'data:text/' + format + ';charset=utf-8,' + encodeURIComponent(content);
 			a = document.getElementById('#download') || document.createElement('a');
 

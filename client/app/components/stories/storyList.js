@@ -21,7 +21,7 @@ Template.storyList.helpers({
 			sort: sort
 		};
 
-		if ( user ) {
+		if ( user && !Session.get('startSearch') ) {
 			filter.owner = user._id;
 
 			Meteor.subscribe('stories', filter, options, search, function(err, response) {

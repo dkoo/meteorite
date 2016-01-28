@@ -10,7 +10,7 @@ Template.forgot.helpers({
 });
 
 Template.forgot.events({
-	'click .back': function(e) {
+	'click .cancel': function(e) {
 		e.preventDefault();
 		if ( !!Meteor.user() ) {
 			FlowRouter.go('/');

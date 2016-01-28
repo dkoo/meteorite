@@ -2,15 +2,17 @@ function reset() {
 	Session.set('modal', undefined);
 	Session.set('viewing', 'stories');
 	Session.set('hideMenu', false);
+	Session.set('startSearch', undefined);
+	Session.set('search', undefined);
 	document.body.classList.remove('sideMenu');
 }
 
 // root
 FlowRouter.route('/', {
-    action: function() {
-    	reset();
-        BlazeLayout.render('stories', {content: 'storyList'});
-    }
+	action: function() {
+		reset();
+		BlazeLayout.render('stories', {content: 'storyList'});
+	}
 });
 
 // login/signup routes
@@ -42,6 +44,13 @@ accounts.route('/forgot', {
 	action: function() {
 		reset();
 		BlazeLayout.render('accounts', {content: 'forgot'});
+	}
+});
+
+FlowRouter.route('/search', {
+	action: function() {
+		reset();
+		BlazeLayout.render('stories', {content: 'search'});
 	}
 });
 
