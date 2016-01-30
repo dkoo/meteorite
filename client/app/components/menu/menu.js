@@ -10,10 +10,15 @@ Template.menu.helpers({
 		}
 	},
 	active: function(sortBy) {
-		return sortBy === Session.get('sortBy') ? 'active': '';
+		var sorted = Session.get('sortBy');
+		if ( !sorted && sortBy === 'modified' ) {
+			return 'active';
+		} else {
+			return sortBy === sorted ? 'active' : '';
+		}
 	},
 	dir: function() {
-		return Session.get('sortAsc') ? 'up' : 'down';
+		return Session.get('sortAsc') ? 'asc' : 'desc';
 	}
 });
 
@@ -23,14 +28,14 @@ Template.menu.events({
 		document.body.classList.toggle('sideMenu');
 	},
 	'click #topbar > ul > li > a': function(e) {
-		if ( e.currentTarget.className !== 'search' ) {
+		if ( !e.currentTarget.classList.contains('search') ) {
 			e.preventDefault();
 
 			e.currentTarget.parentNode.classList.toggle('open');
 		}
-		
+
 		var links = e.currentTarget.parentNode.parentNode.children;
-		
+
 		for ( var i = 0; i !== links.length; i++ ) {
 			if ( links[i].className !== e.currentTarget.parentNode.className ) {
 				links[i].classList.remove('open');

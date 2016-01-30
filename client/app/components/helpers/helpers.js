@@ -3,6 +3,11 @@ Template.registerHelper('loading', function() {
 	return Session.get('loading');
 });
 
+// is the user in search mode?
+Template.registerHelper('searching', function() {
+	return Session.get('searching');
+});
+
 // check whether logged in
 Template.registerHelper('loggedIn', function() {
 	return Meteor.user() ? true : false;

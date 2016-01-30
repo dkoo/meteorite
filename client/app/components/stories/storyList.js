@@ -1,5 +1,6 @@
 Template.storyList.onRendered(function() {
-	document.title = 'Meteorite';
+	var main = document.querySelector('main');
+	main.classList.remove('showPreview');
 });
 
 Template.storyList.helpers({
@@ -32,10 +33,21 @@ Template.storyList.helpers({
 			});
 
 			results = Stories.find( filter, options );
+			Session.set('storyCount', results.count());
 			return results.count() ? results : false;
 		} else {
 			return false;
 		}
+	},
+	term: function() {
+		return Session.get('search') ? true : false;
+	},
+	results: function() {
+		var count = Session.get('storyCount') || 0,
+			term = Session.get('search'),
+			story = count === 1 ? 'story' : 'stories';
+
+		return term ? count + ' ' + story + ' with “' + term + '”' : 'No stories.';
 	},
 	summary: function() {
 		if ( this.dek ) {
@@ -50,7 +62,7 @@ Template.storyList.helpers({
 });
 
 Template.storyList.events({
-	'click a.new': function(e) {
+	'click .new a': function(e) {
 		e.preventDefault();
 
 		Meteor.call('create', Meteor.user()._id, function(err, response) {

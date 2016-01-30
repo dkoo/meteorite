@@ -184,7 +184,8 @@ body.sideMenu {
 					}
 				}
 			}
-			&.open {
+			&.open,
+			&.active {
 				background-color: #aaa;
 				a {
 					color: white;

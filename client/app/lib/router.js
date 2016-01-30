@@ -4,6 +4,7 @@ function reset() {
 	Session.set('hideMenu', false);
 	Session.set('startSearch', undefined);
 	Session.set('search', undefined);
+	Session.set('searching', undefined);
 	document.body.classList.remove('sideMenu');
 }
 
@@ -11,6 +12,7 @@ function reset() {
 FlowRouter.route('/', {
 	action: function() {
 		reset();
+		document.title = 'Meteorite';
 		BlazeLayout.render('stories', {content: 'storyList'});
 	}
 });
@@ -25,6 +27,7 @@ accounts.route('/login', {
 		if ( !!Meteor.user() ) {
 			FlowRouter.go('/');
 		} else {
+			document.title = 'Meteorite: Log In';
 			BlazeLayout.render('accounts', {content: 'login'});
 		}
 	}
@@ -35,6 +38,7 @@ accounts.route('/signup', {
 		if ( !!Meteor.user() ) {
 			FlowRouter.go('/');
 		} else {
+			document.title = 'Meteorite: Sign Up';
 			BlazeLayout.render('accounts', {content: 'signup'});
 		}
 	}
@@ -43,6 +47,7 @@ accounts.route('/signup', {
 accounts.route('/forgot', {
 	action: function() {
 		reset();
+		document.title = 'Meteorite: Forgot Password';
 		BlazeLayout.render('accounts', {content: 'forgot'});
 	}
 });
@@ -50,6 +55,8 @@ accounts.route('/forgot', {
 FlowRouter.route('/search', {
 	action: function() {
 		reset();
+		document.title = 'Meteorite: Search';
+		Session.set('searching', true);
 		BlazeLayout.render('stories', {content: 'search'});
 	}
 });
@@ -62,6 +69,7 @@ var editor = FlowRouter.group({
 
 editor.route('/', {
 	action: function() {
+		reset();
 		Session.set('loading', true);
 		Meteor.call('create', Meteor.user()._id, function(err, response) {
 			if ( err ) {
@@ -75,6 +83,7 @@ editor.route('/', {
 
 editor.route('/:id', {
 	action: function() {
+		reset();
 		Session.set('viewing', 'story');
 		BlazeLayout.render('stories', {content: 'editor'});
 	}

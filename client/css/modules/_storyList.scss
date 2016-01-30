@@ -1,31 +1,117 @@
-.stories {
-	ul {
+main .stories {
+	> ul {
 		margin: 0;
 		padding: 0;
-		li {
-			border: 1px solid #ddd;
-			border-radius: 2px;
-			box-shadow: 1px 1px 0 rgba(0,0,0,0.125);
+		> li {
 			box-sizing: border-box;
 			font-family: $sans;
 			display: block;
+			overflow: ellipsis;
 			& + li {
 				margin-top: 1em;
 			}
-			a {
+			&.status {
+				border: none;
+				box-shadow: none;
+				font-style: italic;
+			}
+			> a {
+				border: 1px solid #ddd;
+				border-radius: 2px;
+				box-shadow: 1px 1px 0 rgba(0,0,0,0.125);
+				box-sizing: border-box;
 				display: block;
 				padding: 0.5em;
-				b,
-				span {
+				> h1,
+				> h2 {
 					display: block;
 				}
-				span {
+				> h1 {
+					font-size: 18px;
+					font-weight: 700;
+					line-height: 22px;
+				}
+				> h2 {
 					color: #aaa;
+					line-height: 14px;
+					margin-top: 0.5em;
 					@include smallcaps();
 				}
-				p {
+				div {
 					font-size: 14px;
 					line-height: 20px;
+					margin-top: 1.5em;
+					ul,
+					ol {
+						padding-left: 1.5em;
+					}
+					p {
+						&::first-child {
+							margin-top: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media #{$medium} {
+	main .stories {
+		padding: 1em 0.5em;
+		> ul {
+			> li {
+				display: inline-block;
+				vertical-align: top;
+				width: calc(100% / 3);
+				> a {
+					height: 300px;
+					margin: 0 0.5em;
+				}
+				&.new,
+				&.status {
+					display: block;
+					margin: 0 0 0.5em 0;
+					width: auto;
+					> a {
+						height: auto;
+					}
+				}
+				&.status {
+					display: block;
+					margin: 0 0.5em 0.5em 0.5em;
+					width: auto;
+				}
+			}
+		}
+	}
+}
+
+@media #{$large} {
+	main .stories {
+		padding: 1em 0.5em;
+		> ul {
+			> li {
+				display: inline-block;
+				vertical-align: top;
+				width: calc(100% / 4);
+				> a {
+					height: 300px;
+					margin: 0 0.5em;
+				}
+				&.new,
+				&.status {
+					display: block;
+					margin: 0 0 0.5em 0;
+					width: auto;
+					> a {
+						height: auto;
+					}
+				}
+				&.status {
+					display: block;
+					margin: 0 0.5em 0.5em 0.5em;
+					width: auto;
 				}
 			}
 		}

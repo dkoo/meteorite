@@ -1,17 +1,25 @@
 <template name="storyList">
 	<div class="stories">
 		<ul>
-			<li>
-				<a class="new" href="/editor/new" title="Start a new story"><i class="fa fa-plus-circle"></i> Add a new story</a>
-			</li>{{#if stories}}{{#each stories}}<li>
+			{{#if searching}}
+				{{#if term}}
+					<li class="status">{{results}}</li>
+				{{/if}}
+			{{else}}
+			<li class="new">
+				<a href="/editor/new" title="Start a new story"><i class="fa fa-plus-circle"></i> Add a new story</a>
+			</li>{{/if}}{{#if stories}}{{#each stories}}<li>
 				<a href="/editor/{{_id}}">
-					<b>{{title}}</b>
-					<span>{{date}}</span>
-					<p>{{{summary}}}</p>
+					<h1>{{title}}</h1>
+					<h2>{{date}}</h2>
+					<div>{{{summary}}}</div>
 				</a>
 			</li>{{/each}}
 			{{else}}
-				<p>No stories!</p>
+				{{#if searching}}
+				{{else}}
+					<li class="status">No stories!</li>
+				{{/if}}
 			{{/if}}
 		</ul>
 	</div>
