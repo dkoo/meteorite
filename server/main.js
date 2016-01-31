@@ -8,10 +8,6 @@ Meteor.publish('stories', function(filter, options, search) {
 	check(options, Object);
 	check(search, String);
 
-	console.log(filter);
-	console.log(options);
-	console.log(search);
-
 	// number of stories to publish
 	if ( options.limit ) {
 		if ( options.limit > Stories.find().count ) {
@@ -31,6 +27,11 @@ Meteor.publish('stories', function(filter, options, search) {
 		];
 	}
 
+	// for phase 1, limit published stories to current user
+	filter.owner = this.userId;
+
+	// reactively publish the total number of stories in this collection
+	Counts.publish(this, 'storyCount', Stories.find({ owner: this.userId }));
 	return Stories.find(filter, options);
 });
 

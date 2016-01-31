@@ -95,21 +95,21 @@ Template.menu.events({
 		var editor = document.querySelector('.editor'),
 			data = Blaze.getData(editor);
 
-		if ( data.status.current === 'trash' ) {
+		// if ( data.status.current === 'trash' ) {
 			Session.set('modal', {
 				key: 'deletePermanently',
 				title: 'Delete permanently?',
-				message: 'This story is already in trash. Do you want to delete it **permanently**? This cannot be undone!',
+				message: 'Do you want to **permanently** delete this sotry? This cannot be undone!',
 				buttons: ['ok', 'cancel']
 			});
-		} else {
-			Session.set('modal', {
-				key: 'trashStory',
-				title: 'Delete story',
-				message: 'Move this story to trash? Items in trash will be automatically deleted after 30 days.',
-				buttons: ['ok', 'cancel']
-			});
-		}
+		// } else {
+		// 	Session.set('modal', {
+		// 		key: 'trashStory',
+		// 		title: 'Delete story',
+		// 		message: 'Move this story to trash? Items in trash will be automatically deleted after 30 days.',
+		// 		buttons: ['ok', 'cancel']
+		// 	});
+		// }
 	},
 	'click .preview a': function(e) {
 		e.preventDefault();

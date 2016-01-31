@@ -10,7 +10,8 @@ Template.stories.events({
 		}
 	},
 	'scroll main': function(e) {
-		if ( Session.get('viewing') === 'story' ) {
+		var viewing =  Session.get('viewing');
+		if ( viewing === 'story' || viewing === 'stories' ) {
 			var scrolled = e.target.scrollTop,
 				timer = Date.now();
 
@@ -24,6 +25,14 @@ Template.stories.events({
 					Session.set('hideMenu', true);
 				} else {
 					Session.set('hideMenu', false);
+				}
+
+				// infinite scroll
+				if ( viewing === 'stories' ) {
+					if ( e.target.clientHeight + e.target.scrollTop >= e.target.scrollHeight - 50 ) {
+						var limit = Session.get('subLimit') || 10;
+						Session.set('subLimit', limit + 10);
+					}
 				}
 
 				Session.set('scrolled', {

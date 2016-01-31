@@ -6,7 +6,6 @@ main .stories {
 			box-sizing: border-box;
 			font-family: $sans;
 			display: block;
-			overflow: ellipsis;
 			& + li {
 				margin-top: 1em;
 			}
@@ -37,6 +36,10 @@ main .stories {
 					margin-top: 0.5em;
 					@include smallcaps();
 				}
+				> i {
+					display: inline-block;
+					vertical-align: middle;
+				}
 				div {
 					font-size: 14px;
 					line-height: 20px;
@@ -49,7 +52,51 @@ main .stories {
 						&::first-child {
 							margin-top: 0;
 						}
+						a {
+							color: #6495ED;
+							pointer-events: none;
+							&:hover {
+								color: #aaa;
+							}
+						}
 					}
+				}
+			}
+			&.new,
+			&.more {
+				> a {
+					text-align: center;
+					&::after {
+						content: '';
+						display: inline-block;
+						height: 100%;
+						vertical-align: middle;
+					}
+					> h3 {
+						display: inline-block;
+						font-size: 14px;
+						letter-spacing: 0.05em;
+						max-width: calc(100% - 20px);
+						text-transform: uppercase;
+						vertical-align: left;
+					}
+				}
+			}
+			&.new {
+				> a {
+					background-color: #ddd;
+					color: white;
+					text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+					transition: text-shadow $transition;
+					&:hover {
+						text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
+					}
+				}
+			}
+			&.more {
+				> a {
+					border: none;
+					box-shadow: none;
 				}
 			}
 		}
@@ -68,7 +115,6 @@ main .stories {
 					height: 300px;
 					margin: 0 0.5em;
 				}
-				&.new,
 				&.status {
 					display: block;
 					margin: 0 0 0.5em 0;
@@ -96,10 +142,10 @@ main .stories {
 				vertical-align: top;
 				width: calc(100% / 4);
 				> a {
-					height: 300px;
+					height: 15em;
 					margin: 0 0.5em;
+					overflow: hidden;
 				}
-				&.new,
 				&.status {
 					display: block;
 					margin: 0 0 0.5em 0;

@@ -5,5 +5,9 @@ main.intro {
 		height: 100%;
 		padding: 1em;
 		text-align: center;
+		h1,
+		h2 {
+			text-align: center;
+		}
 	}
 }

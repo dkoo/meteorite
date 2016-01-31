@@ -25,3 +25,5 @@ check
 kadira:flow-router
 kadira:blaze-layout
 accounts-password
+meteorhacks:fast-render
+tmeasday:publish-counts

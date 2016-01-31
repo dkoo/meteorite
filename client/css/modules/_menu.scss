@@ -97,9 +97,9 @@ body.sideMenu {
 			> a {
 				display: block;
 				padding: 0 18px;
-				transition: none;
+				transition: color $transition;
 				&:hover {
-					color: inherit;
+					color: #aaa;
 				}
 				i {
 					margin-left: 10px;
@@ -189,6 +189,9 @@ body.sideMenu {
 				background-color: #aaa;
 				a {
 					color: white;
+					&:hover {
+						color: white;
+					}
 				}
 				ul {
 					display: block;

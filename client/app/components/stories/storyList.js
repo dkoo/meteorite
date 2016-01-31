@@ -49,6 +49,17 @@ Template.storyList.helpers({
 
 		return term ? count + ' ' + story + ' with “' + term + '”' : 'No stories.';
 	},
+	total: function() {
+		var count = Counts.get('storyCount'),
+			story = count === 1 ? 'story' : 'stories';
+
+		return 'You have ' + count + ' ' + story + '.';
+	},
+	more: function() {
+		var count = Counts.get('storyCount'),
+			shown = Session.get('storyCount') || 0;
+		return count > shown ? true : false;
+	},
 	summary: function() {
 		if ( this.dek ) {
 			return this.dek;
@@ -62,6 +73,9 @@ Template.storyList.helpers({
 });
 
 Template.storyList.events({
+	'click .stories': function(e) {
+		Session.set('hideMenu', false);
+	},
 	'click .new a': function(e) {
 		e.preventDefault();
 
@@ -71,5 +85,11 @@ Template.storyList.events({
 			}
 			FlowRouter.go('/editor/' + response);
 		});
+	},
+	'click .more a': function(e) {
+		e.preventDefault();
+
+		var limit = Session.get('subLimit') || 10;
+		Session.set('subLimit', limit + 10);
 	}
 });
