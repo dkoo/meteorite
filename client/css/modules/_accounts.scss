@@ -8,6 +8,12 @@
 		position: absolute;
 		text-align: center;
 		width: 100%;
+		a {
+			color: black;
+			&:hover {
+				color: #aaa;
+			}
+		}
 	}
 	&::after,
 	form {

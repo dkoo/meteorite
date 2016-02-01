@@ -21,6 +21,12 @@ div.preview {
 			margin-top: 0;
 		}
 	}
+	ul,
+	ol {
+		li + li {
+			margin-top: 0.125em;
+		}
+	}
 	code {
 		font-family: $monospace;
 		font-size: 0.75em;
