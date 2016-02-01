@@ -57,7 +57,8 @@ Template.storyList.helpers({
 	},
 	more: function() {
 		var count = Counts.get('storyCount'),
-			shown = Session.get('storyCount') || 0;
+			shown = Session.get('storyCount') || 10;
+
 		return count > shown ? true : false;
 	},
 	summary: function() {

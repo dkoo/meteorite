@@ -18,14 +18,16 @@
 					<h2>{{date}}</h2>
 					<div>{{{summary}}}</div>
 				</a>
-			</li>{{/each}}{{else}}
-				{{#if searching}}
-				{{else}}
-					<li class="status">No stories!</li>{{/if}}{{#if more}}<li class="more">
+			</li>{{/each}}{{#if more}}<li class="more">
 						<a href="#">
 							<h3>Load more&#160;&#8230;</h3>
 						</a>
 					</li>
+					{{/if}}
+			{{else}}
+				{{#if searching}}
+				{{else}}
+					<li class="status">No stories!</li>
 				{{/if}}
 			{{/if}}
 		</ul>
