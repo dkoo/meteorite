@@ -22,7 +22,8 @@ main .stories {
 				box-shadow: 1px 1px 0 rgba(0,0,0,0.125);
 				box-sizing: border-box;
 				display: block;
-				padding: 0.5em;
+				overflow: hidden;
+				padding: 1em;
 				> h1,
 				> h2,
 				> h3 {
@@ -61,7 +62,7 @@ main .stories {
 						padding-left: 1.5em;
 					}
 					p {
-						&::first-child {
+						&:first-child {
 							margin-top: 0;
 						}
 						a {

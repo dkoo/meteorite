@@ -119,8 +119,6 @@ Meteor.methods({
 
 		if ( userId === this.userId ) {
 			return Meteor.users.remove(userId);
-		} else {
-			throw new Meteor.Error(500, 'Not authorized.');
 		}
 	}
 });

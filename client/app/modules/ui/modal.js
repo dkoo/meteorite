@@ -272,6 +272,7 @@ Template.modal.events({
 	'click .deleteAccount .delete': function(e) {
 		e.preventDefault();
 		Session.set('loading', true);
+		Session.set('messages', ['Account deleted.']);
 		Meteor.call('deleteUser', Meteor.user()._id, function(err, response) {
 			if ( err ) {
 				console.log(err);
@@ -279,8 +280,6 @@ Template.modal.events({
 
 			Session.set('loading', false);
 
-			Session.set('messages', ['Account deleted.']);
-			FlowRouter.go('/login');
 		});
 	}
 });

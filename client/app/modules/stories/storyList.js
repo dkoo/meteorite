@@ -70,12 +70,13 @@ Template.storyList.helpers({
 	},
 	summary: function() {
 		if ( this.dek ) {
-			return this.dek;
+			return '<div>' + this.dek + '</div>';
 		} else {
 			var arr = this.body.split(' '),
-				dek = arr.slice(0, 25).join(' ') + '&#160;&#8230;';
+				length = arr.length,
+				dek = arr.slice(0, 10).join(' ') + '&#160;&#8230;';
 
-			return arr.length >= 25 ? marked(dek) : marked(this.body);
+			return length >= 10 ? '<div class="summary">' + marked(dek) + '</div>' : '<div class="summary">' + marked(this.body) + '</div>';
 		}
 	}
 });
