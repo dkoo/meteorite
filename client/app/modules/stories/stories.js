@@ -11,6 +11,11 @@ Template.stories.events({
 	},
 	'scroll main': function(e) {
 		var viewing =  Session.get('viewing');
+		
+		// close meta when scrolling (to avoid awkward double overflow)
+		e.target.classList.remove('meta');
+		Session.set('metaExpanded', false);
+
 		if ( viewing === 'story' ) {
 			var scrolled = e.target.scrollTop,
 				timer = Date.now();

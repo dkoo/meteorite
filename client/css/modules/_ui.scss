@@ -2,6 +2,7 @@ form {
 	label {
 		display: block;
 		margin: auto;
+		margin-bottom: 1em;
 		max-width: 450px;
 		text-align: left;
 		span {
@@ -31,7 +32,6 @@ form {
 		box-sizing: border-box;
 		display: block;
 		font-size: 16px;
-		margin-bottom: 1em;
 		max-width: 100%;
 		padding: 0.25em;
 		resize: none;
@@ -42,6 +42,16 @@ form {
 		}
 		&:focus {
 			border-color: #aaa;
+		}
+	}
+	legend {
+		display: block;
+		font-size: 12px;
+		line-height: 16px;
+		p {
+			font-style: italic;
+			margin-top: 0.5em;
+			padding: 0;
 		}
 	}
 	select::first-child {
@@ -91,6 +101,13 @@ button {
 			background-color: #60b044;
 		}
 	}
+	&.warning {
+		background-color: indianred;
+		&:hover,
+		&:active {
+			background-color: #a44949;
+		}
+	}
 }
 
 .modal {
@@ -126,6 +143,9 @@ button {
 		position: relative;
 		a.close {
 			float: right;
+		}
+		section + section {
+			margin-top: 2em;
 		}
 	}
 	h1 {

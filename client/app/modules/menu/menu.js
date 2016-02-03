@@ -37,7 +37,7 @@ Template.menu.events({
 		var links = e.currentTarget.parentNode.parentNode.children;
 
 		for ( var i = 0; i !== links.length; i++ ) {
-			if ( links[i].className !== e.currentTarget.parentNode.className ) {
+			if ( links[i] !== e.currentTarget.parentNode ) {
 				links[i].classList.remove('open');
 			}
 		}
@@ -98,9 +98,22 @@ Template.menu.events({
 		// if ( data.status.current === 'trash' ) {
 			Session.set('modal', {
 				key: 'deletePermanently',
-				title: 'Delete permanently?',
-				message: 'Do you want to **permanently** delete this sotry? This cannot be undone!',
-				buttons: ['ok', 'cancel']
+				sections: [
+					{
+						title: 'Delete permanently?',
+						message: 'Do you want to **permanently** delete this story? This cannot be undone!',
+						buttons: [
+							{
+								label: 'delete it',
+								class: 'warning ok'
+							},
+							{
+								label: 'cancel',
+								class: 'cancel'
+							}
+						]
+					}
+				]
 			});
 		// } else {
 		// 	Session.set('modal', {

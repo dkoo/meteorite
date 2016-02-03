@@ -3,7 +3,7 @@ Template.modal.helpers({
 		return Session.get('modal');
 	},
 	parse: function(str) {
-		return marked(str);
+		return str ? marked(str) : false;
 	},
 	generateField: function() {
 		var html = '',
@@ -21,47 +21,50 @@ Template.modal.helpers({
 				placeholder = '';
 		}
 
-		html = '<label for="' + this.id + '"><span>' + this.label + '</span>';
-
 		if ( this.type === 'text' || this.type === 'password' ) {
+			html = '<label for="' + this.id + '"><span>' + this.label + '</span>';
 			html += '<input type="' + this.type + '" id="' + this.id + '" name="' + this.id + '" value="' + placeholder + '">';
-		} else if ( this.type === 'select' ) {
-			html += '<select name="' + this.id + '">';
 
-			if ( this.options.length ) {
-				var value;
-				for ( var i = 0; i !== this.options.length; i++ ) {
-					value = this.options[i].toLowerCase().replace(/\s+/g, '');
-					if ( value === '--select--' ) {
-						value = '';
-					}
-					html += '<option value="' + value + '"'; 
-
-					if ( this.id === 'role' && value === user.profile.role ) {
-						html += ' selected';
-					}
-
-					html += '>';
-					html += this.options[i] + '</option>';
-				}
+			if ( this.legend ) {
+				html += '<legend>' + marked(this.legend) + '</legend>';
 			}
+
+			html += '</label>';
+		} // else if ( this.type === 'select' ) {
+		// 	html += '<select name="' + this.id + '">';
+
+		// 	if ( this.options.length ) {
+		// 		var value;
+		// 		for ( var i = 0; i !== this.options.length; i++ ) {
+		// 			value = this.options[i].toLowerCase().replace(/\s+/g, '');
+		// 			if ( value === '--select--' ) {
+		// 				value = '';
+		// 			}
+		// 			html += '<option value="' + value + '"'; 
+
+		// 			if ( this.id === 'role' && value === user.profile.role ) {
+		// 				html += ' selected';
+		// 			}
+
+		// 			html += '>';
+		// 			html += this.options[i] + '</option>';
+		// 		}
+		// 	}
+		// }
+
+		if ( this.buttons && this.buttons.length ) {
+			html += Meteor.helpers.addButtons(this.buttons);
+			// var ok;
+			// for ( var i = 0; i !== this.buttons.length; i++ ) {
+			// 	ok = this.buttons[i] === 'save' ? ' ok' : '';
+			// 	html += '<button class="' + this.buttons[i] + ok + '">' + this.buttons[i] + '</button>';
+			// }
 		}
-		html += '</label>'
 
 		return html;
 	},
 	showButtons: function() {
-		var html = '',
-			buttons = this.buttons,
-			ok;
-
-		if ( buttons && buttons.length ) {
-			for ( var i = 0; i !== buttons.length; i++ ) {
-				ok = buttons[i] === 'save' ? ' ok' : '';
-				html += '<button class="' + buttons[i] + ok + '">' + buttons[i] + '</button>';
-			}
-		}
-
+		var html = Meteor.helpers.addButtons(this.buttons);
 		return html;
 	}
 });
@@ -94,7 +97,7 @@ Template.modal.events({
 	},
 	// prevent scrolling in iOS while modal is active
 	'touchmove aside.modal': function(e) {
-		e.preventDefault();
+		// e.preventDefault();
 	},
 	// all below: form validation for profile editor
 	'click .deletePermanently .ok': function(e) {
@@ -173,15 +176,15 @@ Template.modal.events({
 			}
 		}
 
-		if ( e.target.role.value ) {
-			if ( e.target.role.value === 'contributor' || e.target.role.value == 'editor' || e.target.role.value === 'factchecker' || e.target.role.value === 'copyeditor' || e.target.role.value === 'producer' ) {
-				if ( e.target.role.value !== user.profile.role ) {
-					data.role = e.target.role.value;
-				}
-			}
-		} else {
-			messages.push('Please select a user role.');
-		}
+		// if ( e.target.role.value ) {
+		// 	if ( e.target.role.value === 'contributor' || e.target.role.value == 'editor' || e.target.role.value === 'factchecker' || e.target.role.value === 'copyeditor' || e.target.role.value === 'producer' ) {
+		// 		if ( e.target.role.value !== user.profile.role ) {
+		// 			data.role = e.target.role.value;
+		// 		}
+		// 	}
+		// } else {
+		// 	messages.push('Please select a user role.');
+		// }
 
 		if ( e.target.newpw.value ) {
 			var valid = true;
@@ -242,5 +245,42 @@ Template.modal.events({
 				Meteor.helpers.appendMessages(e.target, ['Nothing changed!']);
 			}
 		}
+	},
+	'click .profile .deleteAccount': function(e) {
+		e.preventDefault();
+
+		Session.set('modal', {
+			key: 'deleteAccount',
+			sections: [
+				{
+					title: 'Delete Account',
+					message: 'Warning: this can’t be undone. Are you **sure** you want to delete your account **permanently**? All stories will be deleted from the server and will be unrecoverable.',
+					buttons: [
+						{
+							label: 'delete me',
+							class: 'warning delete'
+						},
+						{
+							label: 'cancel',
+							class: 'cancel'
+						}
+					]
+				}
+			]
+		})
+	},
+	'click .deleteAccount .delete': function(e) {
+		e.preventDefault();
+		Session.set('loading', true);
+		Meteor.call('deleteUser', Meteor.user()._id, function(err, response) {
+			if ( err ) {
+				console.log(err);
+			}
+
+			Session.set('loading', false);
+
+			Session.set('messages', ['Account deleted.']);
+			FlowRouter.go('/login');
+		});
 	}
 });

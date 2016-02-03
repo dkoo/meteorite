@@ -89,5 +89,17 @@ Meteor.helpers = {
 		} else {
 			console.log('error: expected an array of messages');
 		}
+	},
+	addButtons: function(buttons) {
+		var html = '',
+			ok;
+
+		if ( buttons && buttons.length ) {
+			for ( var i = 0; i !== buttons.length; i++ ) {
+				html += '<button class="' + buttons[i].class + '">' + buttons[i].label + '</button>';
+			}
+		}
+
+		return html;
 	}
 }

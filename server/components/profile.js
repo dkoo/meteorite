@@ -38,6 +38,10 @@ Meteor.methods({
 		}
 
 		var newUser = Accounts.createUser(user);
+
+		// create the default readme file
+		Meteor.call('createReadMe', newUser);
+
 		return Accounts.sendEnrollmentEmail(newUser);
 	},
 	updateProfile: function(userId, data) {
@@ -106,6 +110,15 @@ Meteor.methods({
 			} else {
 				throw new Meteor.Error(403, 'Nothing changed!');
 			}
+		} else {
+			throw new Meteor.Error(500, 'Not authorized.');
+		}
+	},
+	deleteUser: function(userId) {
+		check(userId, String);
+
+		if ( userId === this.userId ) {
+			return Meteor.users.remove(userId);
 		} else {
 			throw new Meteor.Error(500, 'Not authorized.');
 		}

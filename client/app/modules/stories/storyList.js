@@ -23,7 +23,7 @@ Template.storyList.helpers({
 		};
 
 		if ( user && !Session.get('startSearch') ) {
-			filter.owner = user._id;
+			filter.owner = user._id || 'no one';
 
 			Meteor.subscribe('stories', filter, options, search, function(err, response) {
 				if ( err ) {
@@ -51,11 +51,18 @@ Template.storyList.helpers({
 	},
 	total: function() {
 		var count = Counts.get('storyCount'),
-			story = count === 1 ? 'story' : 'stories';
+			story = count === 1 ? 'story' : 'stories',
+			total = 'You have ' + count + ' ' + story + '.';
 
-		return 'You have ' + count + ' ' + story + '.';
+		if ( !count ) {
+			total += ' Start writing!';
+		}
+		return total;
 	},
 	more: function() {
+		if ( Session.get('searching') ) {
+			return false;
+		}
 		var count = Counts.get('storyCount'),
 			shown = Session.get('storyCount') || 10;
 

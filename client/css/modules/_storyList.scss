@@ -12,6 +12,8 @@ main .stories {
 			&.status {
 				border: none;
 				box-shadow: none;
+				font-family: $serif;
+				font-size: 18px;
 				font-style: italic;
 			}
 			> a {
@@ -22,7 +24,8 @@ main .stories {
 				display: block;
 				padding: 0.5em;
 				> h1,
-				> h2 {
+				> h2,
+				> h3 {
 					display: block;
 				}
 				> h1 {
@@ -31,6 +34,9 @@ main .stories {
 					line-height: 22px;
 				}
 				> h2 {
+					font-size: 14px;
+				}
+				> h3 {
 					color: #aaa;
 					line-height: 14px;
 					margin-top: 0.5em;
@@ -41,9 +47,15 @@ main .stories {
 					vertical-align: middle;
 				}
 				div {
-					font-size: 14px;
-					line-height: 20px;
+					font-family: $serif;
+					font-size: 18px;
 					margin-top: 1.5em;
+					h1,
+					h2,
+					h3 {
+						font-size: 1.25em;
+						line-height: 1.25em;
+					}
 					ul,
 					ol {
 						padding-left: 1.5em;
@@ -74,11 +86,12 @@ main .stories {
 					}
 					> h3 {
 						display: inline-block;
+						color: white;
 						font-size: 14px;
 						letter-spacing: 0.05em;
 						max-width: calc(100% - 20px);
 						text-transform: uppercase;
-						vertical-align: left;
+						vertical-align: middle;
 					}
 				}
 			}
@@ -125,7 +138,7 @@ main .stories {
 				}
 				&.status {
 					display: block;
-					margin: 0 0.5em 0.5em 0.5em;
+					margin: 0 0.5em;
 					width: auto;
 				}
 			}
@@ -156,7 +169,7 @@ main .stories {
 				}
 				&.status {
 					display: block;
-					margin: 0 0.5em 0.5em 0.5em;
+					margin: 0 0.5em;
 					width: auto;
 				}
 			}

@@ -33,7 +33,7 @@ Template.signup.events({
 	},
 	'input #email': function(e) {
 		if ( e.target.value ) {
-			if ( e.target.value.indexOf('@') < 0 && e.target.value.indexOf('.') < 0 ) {
+			if ( e.target.value.indexOf('@') < 0 || e.target.value.indexOf('.') < 0 ) {
 				e.target.parentNode.classList.remove('valid');
 				e.target.parentNode.classList.add('invalid');
 			} else {
@@ -91,6 +91,7 @@ Template.signup.events({
 			return false;
 		}
 
+		Session.set('loading', true);
 		// create the user account
 		Meteor.call('createNewUser', user, function(err) {
 			if ( err ) {
@@ -101,6 +102,7 @@ Template.signup.events({
 				console.log(user.email + ' account created!');
 				Meteor.helpers.appendMessages(e.target, ['Account created! Please check your email to complete your signup.']);
 			}
+			Session.set('loading', false);
 		});
 	},
 	'submit #activate': function(e) {
@@ -120,6 +122,7 @@ Template.signup.events({
 		if ( messages.length ) {
 			Meteor.helpers.appendMessages(e.target, messages);
 		} else {
+			Session.set('loading', true);
 			Accounts.resetPassword(token, password, function(err) {
 				if ( err ) {
 					console.log(err);

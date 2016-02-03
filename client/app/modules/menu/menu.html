@@ -15,13 +15,13 @@
 			{{#if viewing "stories"}}
 				<li>
 					{{#if searching}}
-						<a href="/" class="search"><span>Search</span><i class="fa fa-times"></i></a>
+						<a href="/" class="search"><i class="fa fa-times"></i><span>Search</span></a>
 					{{else}}
-						<a href="/search" class="search"><span>Search</span><i class="fa fa-search"></i></a>
+						<a href="/search" class="search"><i class="fa fa-search"></i><span>Search</span></a>
 					{{/if}}
 				</li>
 				<li>
-					<a href="#"><span>Sort By</span><i class="fa fa-sort"></i></a>
+					<a href="#"><i class="fa fa-sort"></i><span>Sort By</span></a>
 					<ul class="sort">
 						<li><a href="#" class="sort modified {{active "modified"}}">Modified <i class="fa fa-sort-amount-{{dir}}"></i></a></li>
 						<li><a href="#" class="sort createdAt {{active "createdAt"}}">Created <i class="fa fa-sort-amount-{{dir}}"></i></a></li>
@@ -30,29 +30,17 @@
 						<li><a href="#" class="sort owner {{active "owner"}}">Creator <i class="fa fa-sort-alpha-{{dir}}"></i></a></li>
 					</ul>
 				</li>
-			{{else}}
-				<li>
-					<a href="#"><span>Actions</span><i class="fa fa-pencil-square-o"></i></a>
-					<ul class="actions">
-						<li><a href="#" class="export md">Export as Markdown</a></li>
-						<li><a href="#" class="export html">Export as HTML</a></li>
-						<li><a href="#" class="route">Route story</a></li>
-						<li><a href="#" class="delete">Delete story</a></li>
-					</ul>
-				</li>
-				<li class="preview {{#if previewing}}active{{/if}}">
-					<a href="#"><i class="fa fa-eye"></i></a>
-				</li>
 			{{/if}}
-			<li>
-				<a href="#"><span>Settings</span><i class="fa fa-cog"></i></a>
-				<ul class="settings">
+			<li class="{{#if viewing 'stories'}}hidden{{/if}}">
+				<a href="#" class="options"><i class="fa fa-ellipsis-v"></i><span>options</span></a>
+				<ul class="options">
 					<li><input type="checkbox" id="font"><label for="font"></label> Large font</li>
 					<li class="sync"><input type="checkbox" checked="true" id="sync"><label for="sync"></label> Scroll sync</li>
+					<li><a href="#" class="export md">Export as Markdown</a></li>
+					<li><a href="#" class="export html">Export as HTML</a></li>
+					<li><a href="#" class="delete">Delete story</a></li>
 				</ul>
 			</li>
-			<!-- <li>{{> loginButtons align="right"}}</li> -->
-			<!-- <li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li> -->
 		</ul>
 	</header>
 </template>

@@ -1,0 +1,24 @@
+<template name="modal">
+	{{#with data}}
+		<aside class="modal {{key}}">
+			<div>
+				{{#each sections}}
+					<section>
+						<h1>{{title}}</h1>
+						{{{parse message}}}
+
+						{{#if form}}
+							<form>
+								{{#each form}}
+									{{{generateField}}}
+								{{/each}}
+							</form>
+						{{/if}}
+
+						{{{showButtons}}}
+					</section>
+				{{/each}}
+			</div>
+		</aside>
+	{{/with}}
+</template>

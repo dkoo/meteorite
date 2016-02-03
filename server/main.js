@@ -2,7 +2,7 @@ Meteor.publish('stories', function(filter, options, search) {
 	check(filter, {
 		_id: Match.Optional(String),
 		limit: Match.Optional(Number),
-		owner: Match.Optional(String),
+		owner: Match.Optional(Match.OneOf(String, undefined)),
 		sort: Match.Optional(Object)
 	});
 	check(options, Object);
@@ -21,8 +21,9 @@ Meteor.publish('stories', function(filter, options, search) {
 
 		filter['$or'] = [
 			{ title: { $regex: new RegExp('(?=.*' + search + ').*', 'i') } },
+			{ author: { $regex: new RegExp('(?=.*' + search + ').*' + '.*', 'i') } },
+			{ dek: { $regex: new RegExp('(?=.*' + search + ').*' + '.*', 'i') } },
 			{ body: { $regex: new RegExp('(?=.*' + search + ').*' + '.*', 'i') } },
-			{ tags: { $regex: new RegExp('(?=.*' + search + ').*' + '.*', 'i') } },
 			{ createdAt: { $gte: Date.parse(search), $lte: Date.parse(search) + 86400000 } } // date queries should find all stories created within a 24-hour period
 		];
 	}
