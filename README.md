@@ -10,14 +10,15 @@ Type some Markdown on the left side and see how it’ll look in HTML on the righ
 
 ### Some More Detail
 
-* Export your stories in .md or .html format using the **Action** menu above. Or delete your story, if you want to.
-* Toggle increased font size or scroll sync (synchronized scrolling between edit and preview windows) in the **Settings** menu.
+See the **Options** menu to:
+* Export your stories in .md or .html format
+* Delete your story (currently irreversible)
+* Toggle increased font size or scroll sync (synchronized scrolling between edit and preview windows)
+
+You can also:
+
 * Expand any pane in the editor by clicking on the expand icons in the upper-right corner of each pane (desktop only).
 * Toggle editor/preview mode by tapping the eye logo in the top menu bar (mobile only).
-
-## Version
-
-0.1.0. This version is Phase 1 of development. Phase 2 will add offline editing via local storage and revisions management systems. Phase 3 will add multi-user copy editing features. See Future Plans below for more details.
 
 ## Technical Details
 
@@ -32,26 +33,30 @@ This application is built on the foundation of several great open-source project
 
 ### Contributing
 
-If you’d like to contribute, just create a pull request.
+I am not officially asking for outside contributions at this early phase of the project, but if you’re interested in contributing, please get in touch.
 
-#### To Install
+### Installing
 
 1. Clone the repository
-2. Make sure you have [NodeJS](https://nodejs.org/) and [Meteor](https://www.meteor.com/install) installed
+2. Make sure you have [Meteor](https://www.meteor.com/install) installed
 3. In Terminal, run `meteor` from inside your cloned folder to install local packages and start a local server
 4. Point your browser to http://localhost:3000
-5. Unit tests will be located in the `/tests` folder.
+
+## Version
+
+0.1.0. This version is Phase 1 of development. Phase 2 will add offline editing via local storage and revisions management systems. Phase 3 will add multi-user copy editing features. See Future Plans below for more details.
 
 ## License
 
-[MIT](https://opensource.org/licenses/MIT). Have fun!
+[MIT](https://opensource.org/licenses/MIT). Yay for open source!
 
 ## Future Plans
 
 Meteorite Editor was always intended to be a multi-user writing and copy-editing tool for teams of writers. In its current state, it’s single-user only, so that I can concentrate on building a great writing and editing experience first. Here are some of the features I’m planning to implement:
 
 ### Phase 1
-* Unit tests. I’ve been lazy with this.
+
+* Unit tests.
 
 ### Phase 2
 
@@ -74,3 +79,5 @@ Meteorite Editor was always intended to be a multi-user writing and copy-editing
 
 * One-click publishing to other services such as Google Drive, Dropbox, or WordPress
 * Custom themes and skins
+
+Thanks for visiting, and enjoy!
