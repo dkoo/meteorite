@@ -4,6 +4,8 @@ Meteorite Editor is a full-featured, open-source, cloud-based, mobile-friendly, 
 
 Powered by the [Meteor](https://www.meteor.com/) framework, Meteorite Editor offers a clean, minimalist writing environment to compose, preview and collaborate on your stories before you publish. For more information or to view the latest source code, please visit the [repository](https://github.com/dkoo).
 
+Check out the [demo](https://meteorite-editor.herokuapp.com/) to get a feel for how it works.
+
 ## How to Use
 
 Type some Markdown on the left side and see how it’ll look in HTML on the right. Changes are saved automatically as you type.
