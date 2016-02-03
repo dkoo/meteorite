@@ -3,14 +3,15 @@ Meteor.methods({
 		check(userId, String);
 
 		if ( userId === this.userId ) {
-			var story = {
-				owner: this.userId,
-				createdAt: Date.now(),
-				modified: Date.now(),
-				title: 'Untitled story',
-				body: 'Story content goes here. Try typing some **Markdown**!',
-				status: 'draft'
-			};
+			var date = Date.now(),
+				story = {
+					owner: this.userId,
+					createdAt: date,
+					modified: date,
+					title: 'Untitled story',
+					body: 'Story content goes here. Try typing some **Markdown**!',
+					status: 'draft'
+				};
 
 			return Stories.insert(story);
 		} else {

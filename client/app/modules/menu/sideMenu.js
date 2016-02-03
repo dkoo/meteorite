@@ -16,6 +16,23 @@ Template.sideMenu.events({
 			]
 		});
 	},
+	'click .markdown': function(e) {
+		e.preventDefault();
+
+		Session.set('modal', {
+			key: 'markdown',
+			sections: [
+				{
+					title: 'Markdown Cheatsheet',
+					message: '[Markdown](https://daringfireball.net/projects/markdown/) is an easy-to-write plain-text syntax ideal for writing for digital media. Meteorite Editor uses [GitHub-Flavored Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) (GFM). This cheatsheet is adapted from GitHub’s.\n\n#### Headers\n```\n# h1\n## h2\n...\n###### h6\n```\n\n#### Emphasis\n\n```\n*italic*\n**bold**\n***bold italic***\n~~strikethrough~~\n```\n\n#### Lists\n\n```\n* unordered list item 1\n  - nested list item\n* unordered list item 2\n\n1. ordered list item 1\n  - nested list item\n2. orered list item 2\n```\n\n#### Links\n\n```\n[Link text](http://url/)\n```\n\n#### Images\n\nNote that Meteorite cannot not host any assets internally.\n\n```\n[!alt text](http://imageurl)\n```\n\n#### Code\n\n```\n`var s = \'Hello World\'`\n```\n\nMeteorite also supports [fenced code](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code-and-syntax-highlighting), as per GFM.\n\n#### Blockquotes\n\n```\n> Some text.\n> Consecutive blockquotes will be combined into a single container.\n```\n\n#### Horizontal Rules\n\nThree or more consecutive:\n\n```\nhyphens: ---\nasterisks: ***\nunderscores: ___\n```\n\n#### Line Breaks\n\nMeteorite conforms to the [GFM treatment of line breaks](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code-and-syntax-highlighting). Single line breaks result in a `<br>`, while double line breaks denote a paragraph break.',
+					buttons: [{
+						label: 'close',
+						class: 'close'
+					}]
+				}
+			]
+		});
+	},
 	'click .profile': function(e) {
 		e.preventDefault();
 
@@ -74,6 +91,7 @@ Template.sideMenu.events({
 				},
 				{
 					title: 'Or, Delete Your Account',
+					message: 'Warning: this cannot be undone. Your account and all your stories will be deleted permanently.',
 					buttons: [{
 						label: 'Delete my account',
 						class: 'deleteAccount warning'
