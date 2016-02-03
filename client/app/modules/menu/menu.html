@@ -30,7 +30,10 @@
 						<li><a href="#" class="sort owner {{active "owner"}}">Creator <i class="fa fa-sort-alpha-{{dir}}"></i></a></li>
 					</ul>
 				</li>
-			{{/if}}
+			{{/if}}		
+ -			<li class="preview {{#if previewing}}active{{/if}} {{#if viewing 'stories'}}hidden{{/if}}">		
+ -				<a href="#"><i class="fa fa-eye"></i></a>		
+ -			</li>
 			<li class="{{#if viewing 'stories'}}hidden{{/if}}">
 				<a href="#" class="options"><i class="fa fa-ellipsis-v"></i><span>options</span></a>
 				<ul class="options">
