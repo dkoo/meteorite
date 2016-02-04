@@ -119,6 +119,7 @@ body.sideMenu {
 				white-space: nowrap;
 				width: auto;
 				li {
+					color: #ddd;
 					display: block;
 					margin: 0;
 					&.sync {
@@ -190,9 +191,9 @@ body.sideMenu {
 			}
 			&.open,
 			&.active {
-				background-color: #757878;
+				background-color: #464D4D;
 				a {
-					color: white;
+					color: #ddd;
 					&:hover {
 						color: white;
 					}
@@ -207,8 +208,8 @@ body.sideMenu {
 
 @media #{$large} {
 	#topbar {
-		ul {
-			li {
+		> ul {
+			> li {
 				&.preview {
 					display: none;
 				}
@@ -218,6 +219,13 @@ body.sideMenu {
 					}
 					span {
 						display: inline;
+					}
+				}
+				ul {
+					li {
+						&.sync {
+							display: block;
+						}
 					}
 				}
 			}
