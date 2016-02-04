@@ -125,6 +125,7 @@ button {
 	transition: opacity 0.5s ease-in-out;
 	width: 100%;
 	z-index: 10;
+	-webkit-overflow-scrolling: touch;
 	&::after,
 	div {
 		display: inline-block;

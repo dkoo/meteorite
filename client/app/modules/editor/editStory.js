@@ -11,12 +11,14 @@ Template.editStory.onRendered(function() {
 		mode: 'markdown'
 	})
 
+	// add story title to browser title bar
 	document.title = this.data.title ? 'Meteorite: ' + this.data.title : 'Meteorite';
 
+	// load the preview
 	preview = this.find('.preview article');
-
 	preview.innerHTML = marked(cm.getValue());
 
+	// fill in meta fields
 	var self = this,
 		fields = self.findAll('.meta *[contentEditable=true]'),
 		field;
@@ -24,7 +26,7 @@ Template.editStory.onRendered(function() {
 	for ( var i = 0; i !== fields.length; i++ ) {
 		field = fields[i];
 
-		field.textContent = self.data[field.className];
+		field.textContent = self.data[field.className] || '';
 	}
 
 	// bugfix for CodeMirror cursor positioning bug

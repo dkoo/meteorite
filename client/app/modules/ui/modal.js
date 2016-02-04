@@ -95,9 +95,11 @@ Template.modal.events({
 		e.preventDefault();
 		Session.set('modal', undefined);
 	},
-	// prevent scrolling in iOS while modal is active
+	// prevent scrolling of background page while modal is active
 	'touchmove aside.modal': function(e) {
-		// e.preventDefault();
+		if ( e.target.tagName.toLowerCase() === 'main' ) {
+			e.preventDefault();
+		}
 	},
 	// all below: form validation for profile editor
 	'click .deletePermanently .ok': function(e) {
