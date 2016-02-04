@@ -50,7 +50,7 @@ I am not officially asking for outside contributions at this early phase of the 
 
 ## License
 
-[MIT](https://opensource.org/licenses/MIT). Yay for open source!
+[MIT](https://github.com/dkoo/meteorite/blob/master/LICENSE). Yay for open source!
 
 ## Future Plans
 
