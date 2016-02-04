@@ -15,7 +15,6 @@ fourseven:scss
 seba:minifiers-autoprefixer
 perak:codemirror
 chuangbo:marked
-angularjs:angular-sanitize
 es5-shim
 ecmascript
 blaze-html-templates
@@ -27,3 +26,4 @@ kadira:blaze-layout
 accounts-password
 meteorhacks:fast-render
 tmeasday:publish-counts
+fastclick

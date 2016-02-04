@@ -99,8 +99,13 @@ Template.signup.events({
 				messages.push(err.reason);
 				Meteor.helpers.appendMessages(e.target, messages);
 			} else {
-				console.log(user.email + ' account created!');
-				Meteor.helpers.appendMessages(e.target, ['Account created! Please check your email to complete your signup.']);
+				// remove action buttons on success
+				var buttons = e.target.querySelectorAll('button');
+				for ( var i = 0; i !== buttons.length; i++ ) {
+					buttons[i].parentNode.removeChild(buttons[i]);
+				}
+
+				Meteor.helpers.appendMessages(e.target, ['Account created! Check your email to complete signup.']);
 			}
 			Session.set('loading', false);
 		});
