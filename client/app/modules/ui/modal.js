@@ -254,10 +254,10 @@ Template.modal.events({
 			sections: [
 				{
 					title: 'Delete Account',
-					message: 'Warning: this can’t be undone. Are you **sure** you want to delete your account **permanently**? All stories will be deleted from the server and will be unrecoverable.',
+					message: 'Warning: this cannot be undone. Are you **absolutely certain** you want to delete your account **permanently**? All your stories will be deleted from the server and will be unrecoverable.',
 					buttons: [
 						{
-							label: 'delete me',
+							label: 'Yes, delete my account',
 							class: 'warning delete'
 						},
 						{
