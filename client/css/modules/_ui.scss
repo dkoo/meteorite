@@ -80,7 +80,7 @@ button {
 	text-transform: uppercase;
 	transition: background-color $transition;
 	& + button {
-		margin-left: 0.5em;
+		margin-left: 1em;
 	}
 	&:hover,
 	&:active {

@@ -23,6 +23,19 @@ Template.menu.helpers({
 });
 
 Template.menu.events({
+	'click #topbar': function(e) {
+		if ( e.target.id === 'topbar' ) {
+			document.body.classList.remove('sideMenu');
+
+			var links = e.currentTarget.querySelectorAll('.open') || [];
+
+			for ( var i = 0; i !== links.length; i++ ) {
+				if ( links[i] !== e.currentTarget.parentNode ) {
+					links[i].classList.remove('open');
+				}
+			}
+		}
+	},
 	'click #burger': function(e) {
 		e.preventDefault();
 		document.body.classList.toggle('sideMenu');
@@ -34,7 +47,7 @@ Template.menu.events({
 			e.currentTarget.parentNode.classList.toggle('open');
 		}
 
-		var links = e.currentTarget.parentNode.parentNode.children;
+		var links = e.currentTarget.parentNode.parentNode.querySelectorAll('.open') || [];
 
 		for ( var i = 0; i !== links.length; i++ ) {
 			if ( links[i] !== e.currentTarget.parentNode ) {
