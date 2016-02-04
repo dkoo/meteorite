@@ -68,44 +68,35 @@ form {
 }
 
 button {
-	background-color: #ddd;
+	background-color: #7f8c8d;
 	border: none;
-	border-bottom: 4px solid #ccc;
-	border-radius: 4px;
 	color: white;
 	font-family: $sans;
-	font-size: 14px;
+	font-size: 12px;
 	letter-spacing: 0.05em;
 	margin-top: 0.5em;
 	padding: 0.25em 1.5em;
-	text-shadow: 0px -1px #aaa;
 	text-transform: uppercase;
-	transition: background-color $transition, border-color $transition, border-width 0.125s ease-in-out, transform  0.125s ease-in-out;
-	// @include smallcaps();
+	transition: background-color $transition;
 	& + button {
 		margin-left: 0.5em;
 	}
 	&:hover,
 	&:active {
-		background-color: #ccc;
-		border-color: #aaa;
-	}
-	&:active {
-		border-width: 1px;
-		transform: translateY(3px);
+		background-color: #95a5a6;
 	}
 	&.ok {
-		background-color: mediumseagreen;
+		background-color: #2ecc71;
 		&:hover,
 		&:active {
-			background-color: #60b044;
+			background-color: #27ae60;
 		}
 	}
 	&.warning {
-		background-color: indianred;
+		background-color: #e74c3c;
 		&:hover,
 		&:active {
-			background-color: #a44949;
+			background-color: #c0392b;
 		}
 	}
 }
@@ -114,9 +105,9 @@ button {
 	background-color: rgba(0, 0, 0, 0.75);
 	box-sizing: border-box;
 	font-family: $sans;
-	font-size: 16px;
+	font-size: 14px;
 	height: 100%;
-	line-height: 20px;
+	line-height: 22px;
 	overflow: auto;
 	padding: 1em 0;
 	position: fixed;
@@ -137,10 +128,9 @@ button {
 	}
 	div {
 		background-color: white;
-		border-radius: 3px;
 		box-shadow: 0.5em 0.5em 1em rgba(0, 0, 0, 0.25);
 		max-width: 75%;
-		padding: 1em;
+		padding: 2em;
 		position: relative;
 		a.close {
 			float: right;
@@ -154,6 +144,7 @@ button {
 		font-size: 18px;
 		letter-spacing: 0.05em;
 		line-height: 20px;
+		margin-bottom: 1em;
 		text-transform: uppercase;
 	}
 	h2,
@@ -235,6 +226,6 @@ button {
 
 @media #{$large} {
 	.modal div {
-		max-width: 500px;
+		max-width: 450px;
 	}
 }

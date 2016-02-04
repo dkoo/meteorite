@@ -90,8 +90,8 @@ Template.sideMenu.events({
 					]
 				},
 				{
-					title: 'Or, Delete Your Account',
-					message: 'Warning: this cannot be undone. Your account and all your stories will be deleted permanently.',
+					title: 'Delete Your Account',
+					message: 'Warning: this action cannot be undone. Your account and all your stories will be deleted permanently.',
 					buttons: [{
 						label: 'Delete my account',
 						class: 'deleteAccount warning'
