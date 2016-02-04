@@ -17,7 +17,6 @@ body.sideMenu {
 
 #topbar {
 	background-color: white;
-	// box-shadow: 0 1px 0 rgba(0,0,0,0.15),0 0 1px 0 rgba(0,0,0,0.15);
 	border-bottom: 1px solid #ddd;
 	box-sizing: border-box;
 	left: 0;
@@ -109,6 +108,7 @@ body.sideMenu {
 				}
 			}
 			ul {
+				background-color: #464D4D;
 				display: none;
 				color: white;
 				margin: 0;
@@ -125,7 +125,7 @@ body.sideMenu {
 						display: none;
 					}
 					a {
-						background-color: #aaa;
+						color: #ddd;
 						display: block;
 						padding: 0 18px;
 						i {
@@ -134,7 +134,8 @@ body.sideMenu {
 						}
 						&:hover,
 						&.active {
-							background-color: #888;
+							background-color: #757878;
+							color: white;
 						}
 						&.active i {
 							display: inline-block;
@@ -143,7 +144,7 @@ body.sideMenu {
 				}
 				&.options {
 					li {
-						background-color: #aaa;
+						background-color: #464D4D;
 						input {
 							display: none;
 							& + label {
@@ -162,7 +163,7 @@ body.sideMenu {
 								vertical-align: middle;
 								width: 30px;
 								&::after {
-									background-color: #aaa;
+									background-color: #464D4D;
 									border-radius: 14px;
 									content: '';
 									display: block;
@@ -176,9 +177,9 @@ body.sideMenu {
 							}
 							&:checked {
 								& + label {
-									border-color: mediumseagreen;
+									border-color: #aaa;
 									&::after {
-										background-color: mediumseagreen;
+										background-color: #aaa;
 										transform: translateX(12px);
 									}
 								}
@@ -189,7 +190,7 @@ body.sideMenu {
 			}
 			&.open,
 			&.active {
-				background-color: #aaa;
+				background-color: #757878;
 				a {
 					color: white;
 					&:hover {
