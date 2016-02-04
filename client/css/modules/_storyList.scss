@@ -18,12 +18,14 @@ main .stories {
 			}
 			> a {
 				border: 1px solid #ddd;
-				border-radius: 2px;
 				box-shadow: 1px 1px 0 rgba(0,0,0,0.125);
 				box-sizing: border-box;
 				display: block;
 				overflow: hidden;
 				padding: 1em;
+				&:hover {
+					color: #989FA3;
+				}
 				> h1,
 				> h2,
 				> h3 {
@@ -38,7 +40,7 @@ main .stories {
 					font-size: 14px;
 				}
 				> h3 {
-					color: #aaa;
+					color: #989FA3;
 					line-height: 14px;
 					margin-top: 0.5em;
 					@include smallcaps();
@@ -97,12 +99,12 @@ main .stories {
 			}
 			&.new {
 				> a {
-					background-color: #ddd;
+					background-color: #bdc3c7;
 					color: white;
 					text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
 					transition: text-shadow $transition;
 					&:hover {
-						text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
+						text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 					}
 				}
 			}
