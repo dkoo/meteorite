@@ -104,11 +104,8 @@ body.sideMenu {
 				&:hover {
 					color: #aaa;
 				}
-				i {
-					margin-right: 10px;
-				}
 				span {
-					display: inline;
+					display: none;
 				}
 			}
 			ul {
@@ -124,6 +121,9 @@ body.sideMenu {
 				li {
 					display: block;
 					margin: 0;
+					&.sync {
+						display: none;
+					}
 					a {
 						background-color: #aaa;
 						display: block;
@@ -204,34 +204,21 @@ body.sideMenu {
 	}
 }
 
-@media #{$small} {
-	#topbar {
-		ul {
-			li {
-				&.sync {
-					display: none;
-				}
-				i {
-					font-size: 12px;
-				}
-				a {
-					i {
-						margin-left: 0;
-					}
-					span {
-						display: none;
-					}
-				}
-			}
-		}
-	}
-}
-
 @media #{$large} {
 	#topbar {
 		ul {
-			li.preview {
-				display: none;
+			li {
+				&.preview {
+					display: none;
+				}
+				a {
+					i {
+						margin-right: 10px;
+					}
+					span {
+						display: inline;
+					}
+				}
 			}
 		}
 	}
