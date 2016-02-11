@@ -30,7 +30,7 @@ Template.menu.events({
 			var links = e.currentTarget.querySelectorAll('.open') || [];
 
 			for ( var i = 0; i !== links.length; i++ ) {
-				if ( links[i] !== e.currentTarget.parentNode ) {
+				if ( links[i] !== e.currentTarget.parentNode && !links[i].classList.contains('preview') ) {
 					links[i].classList.remove('open');
 				}
 			}
@@ -50,7 +50,7 @@ Template.menu.events({
 		var links = e.currentTarget.parentNode.parentNode.querySelectorAll('.open') || [];
 
 		for ( var i = 0; i !== links.length; i++ ) {
-			if ( links[i] !== e.currentTarget.parentNode ) {
+			if ( links[i] !== e.currentTarget.parentNode && !links[i].classList.contains('preview') ) {
 				links[i].classList.remove('open');
 			}
 		}

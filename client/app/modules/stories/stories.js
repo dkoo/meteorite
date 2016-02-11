@@ -4,9 +4,11 @@ Template.stories.events({
 		var links = document.querySelectorAll('#topbar li.open');
 
 		document.body.classList.remove('sideMenu');
-		
+
 		for ( var i = 0; i !== links.length; i++ ) {
-			links[i].classList.remove('open');
+			if ( !links[i].classList.contains('preview') ) {
+				links[i].classList.remove('open');
+			}
 		}
 	},
 	'scroll main': function(e) {
