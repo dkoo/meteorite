@@ -60,6 +60,10 @@ Meteor.methods({
 				set;
 			var user = Meteor.users.findOne({ _id: this.userId });
 
+			if ( user.username === 'tester' ) {
+				throw new Meteor.Error(403, 'Can’t change test account.');
+			}
+
 			if ( data.user ) {
 				// check if username is already in use
 				var usernames = Meteor.users.find({ 'username': data.user }).fetch;

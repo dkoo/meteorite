@@ -211,37 +211,47 @@ Template.modal.events({
 				Meteor.helpers.appendMessages(e.target, messages);
 				return false;
 			} else {
-				// change the password
-				Accounts.changePassword(e.target.oldpw.value, e.target.newpw.value, function(err, response) {
-					if ( err ) {
-						console.log(err);
-						messages.push(err.reason);
-					} else {
-						messages.push('Password updated!');
-						e.target.oldpw.value = '';
-						e.target.newpw.value = '';
-						e.target.confirmpw.value = '';
-					}
-					if ( messages.length ) {
-						Meteor.helpers.appendMessages(e.target, messages);
-					}
-				});
+				// don't allow users to change the test account
+				if ( Meteor.user().username !== 'tester' ) {
+					// change the password
+					Accounts.changePassword(e.target.oldpw.value, e.target.newpw.value, function(err, response) {
+						if ( err ) {
+							console.log(err);
+							messages.push(err.reason);
+						} else {
+							messages.push('Password updated!');
+							e.target.oldpw.value = '';
+							e.target.newpw.value = '';
+							e.target.confirmpw.value = '';
+						}
+						if ( messages.length ) {
+							Meteor.helpers.appendMessages(e.target, messages);
+						}
+					});
+				} else {
+					Meteor.helpers.appendMessages(e.target, ['Can’t change test account info.']);
+				}
 			}
 		}
 
 		if ( data.user || data.email || data.role ) {
-			Meteor.call('updateProfile', Meteor.user()._id, data, function(err, response) {
-				if ( err ) {
-					console.log(err);
-					messages.push(err.reason);
-				} else {
-					messages.push('Changes saved!');
-				}
+			// don't allow users to change the test account
+			if ( Meteor.user().username !== 'tester' ) {
+				Meteor.call('updateProfile', Meteor.user()._id, data, function(err, response) {
+					if ( err ) {
+						console.log(err);
+						messages.push(err.reason);
+					} else {
+						messages.push('Changes saved!');
+					}
 
-				if ( messages.length ) {
-					Meteor.helpers.appendMessages(e.target, messages);
-				}
-			});
+					if ( messages.length ) {
+						Meteor.helpers.appendMessages(e.target, messages);
+					}
+				});
+			} else {
+				Meteor.helpers.appendMessages(e.target, ['Can’t change test account info.']);
+			}
 		} else {
 			if ( !e.target.newpw.value || !e.target.confirmpw.value ) {
 				Meteor.helpers.appendMessages(e.target, ['Nothing changed!']);
@@ -251,25 +261,43 @@ Template.modal.events({
 	'click .profile .deleteAccount': function(e) {
 		e.preventDefault();
 
-		Session.set('modal', {
-			key: 'deleteAccount',
-			sections: [
-				{
-					title: 'Delete Account',
-					message: 'Warning: this cannot be undone. Are you **absolutely certain** you want to delete your account **permanently**? All your stories will be deleted from the server and will be unrecoverable.',
-					buttons: [
-						{
-							label: 'Yes, delete my account',
-							class: 'warning delete'
-						},
-						{
-							label: 'cancel',
-							class: 'cancel'
-						}
-					]
-				}
-			]
-		})
+		if ( Meteor.user().username !== 'tester' ) {
+			Session.set('modal', {
+				key: 'deleteAccount',
+				sections: [
+					{
+						title: 'Delete Account',
+						message: 'Warning: this cannot be undone. Are you **absolutely certain** you want to delete your account **permanently**? All your stories will be deleted from the server and will be unrecoverable.',
+						buttons: [
+							{
+								label: 'Yes, delete my account',
+								class: 'warning delete'
+							},
+							{
+								label: 'cancel',
+								class: 'cancel'
+							}
+						]
+					}
+				]
+			});
+		} else {
+			Session.set('modal', {
+				key: 'cantDelete',
+				sections: [
+					{
+						title: 'Can’t Delete Test Account',
+						message: 'Sorry, you can’t delete the tester account.',
+						buttons: [
+							{
+								label: 'close',
+								class: 'close'
+							}
+						]
+					}
+				]
+			});
+		}
 	},
 	'click .deleteAccount .delete': function(e) {
 		e.preventDefault();
