@@ -18,4 +18,10 @@ describe('utils', function() {
 		expect(Meteor.utils.validPassword(allLowercase)).toBe(false);
 		expect(Meteor.utils.validPassword(valid)).toBe(true);
 	});
+
+	it('converts a JS date string to human readable form', function() {
+		var bday = new Date(1983, 04, 11);
+
+		expect(Meteor.utils.prettifyDate(bday)).toEqual(['Wed.', '5/11/1983', '00:00']);
+	});
 });
