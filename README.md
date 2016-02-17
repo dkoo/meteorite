@@ -1,6 +1,6 @@
 # Meteorite Editor
 
-Meteorite Editor is a full-featured, open-source, cloud-based, mobile-friendly, HTML5 [Markdown](http://daringfireball.net/projects/markdown/) editor with real-time in-browser previewing and publishing via REST API.
+Meteorite Editor is a full-featured, open-source, browser-based, mobile-friendly, HTML5 [Markdown](http://daringfireball.net/projects/markdown/) editor with real-time previewing and publishing via REST API.
 
 Powered by the [Meteor](https://www.meteor.com/) framework, Meteorite Editor offers a clean, minimalist writing environment to compose, preview and collaborate on your stories before you publish. For more information or to view the latest source code, please visit the [repository](https://github.com/dkoo).
 
