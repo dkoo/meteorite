@@ -36,3 +36,9 @@ Meteor.publish('stories', function(filter, options, search) {
 	return Stories.find(filter, options);
 });
 
+// do not allow direct editing of users collection from client
+Meteor.users.deny({
+	update: function() {
+		return true;
+	}
+});
