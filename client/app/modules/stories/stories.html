@@ -2,7 +2,7 @@
 	{{#if loggedIn}}
 		{{> sideMenu}}
 		{{> menu}}
-		<main class="sync {{#if previewing}}showPreview{{/if}}">
+		<main class="sync">
 			{{> Template.dynamic template=content}}
 		</main>
 	{{else}}
